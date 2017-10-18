@@ -8,7 +8,7 @@ Getting started instructions
 
 ## Authors
 
-* **John Doe** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **John Doe** - *Initial work* - [JohnDoe](https://github.com/johndoe)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
