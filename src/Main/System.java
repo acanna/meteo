@@ -6,6 +6,8 @@ import Filters.DataFilter;
 import Streams.Input;
 import Streams.Output;
 
+import static Main.OSType.isWindows;
+
 class System {
     private ImageData image = new ImageData();
     private DataFilter dataFilter = new DataFilter();
@@ -31,8 +33,12 @@ class System {
 
             //  Обработка и вывод в файл
             // dataBaseName - путь в который выводятся данные с графика
+            String databaseName = "GraphData/dataBase";
+            if (isWindows()) {
+                databaseName = "GraphData\\dataBase";
+            }
             out.flush(dataFilter.getData(image.getPixelMap(), image.getImage()),
-                    "GraphData/dataBase" + (in.getName().replace(".jp?g", "")) + ".txt");
+                    databaseName + (in.getName().replace(".jp?g", "")) + ".txt");
 
 
             double proccTimeEnd = java.lang.System.nanoTime() / 1000000000.0;

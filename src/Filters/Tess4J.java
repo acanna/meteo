@@ -11,15 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
+import static Main.OSType.isWindows;
+
 class Tess4J {
 
-    public static boolean isWindows() {
 
-        String os = System.getProperty("os.name").toLowerCase();
-        //windows
-        return (os.contains("win"));
-
-    }
 
     // Коэф проверки
     private final double accuracy = 0.2;
