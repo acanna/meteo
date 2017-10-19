@@ -1,6 +1,6 @@
 package Data;
 
-public class PixelMap { // TODO: Хранит в себе матрицу с пикселями(тут всё очевидно)
+public class PixelMap { //  Хранит в себе матрицу с пикселями(тут всё очевидно)
     private Pixel[][] pixelMap;
     private final int width,height;
     PixelMap(int height, int width){
