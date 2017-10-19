@@ -12,37 +12,38 @@ import java.util.*;
 import java.util.List;
 
 class Tess4J {
-    private Pixel zeroPixel = null; //TODO: Первый штрих по оси Y
-    private Pixel secondPixel = null; //TODO: Второй штрих по оси Y
-    private double zeroValue = -1; //TODO: Значение первого штриха
-    private double scale = -1; //TODO: Скейл
+    // Значение первого штриха
+    private double range = -1;
+    private List<Pixel> pixelList;
+    private List<Double> nums;
 
-    void processImage(int xLine, int yLine, PixelMap map, BufferedImage in){ //TODO:
-        //TODO: Работа с осью Y
+    void processImage(int xLine, int yLine, PixelMap map, BufferedImage in){
+        // Работа с осью Y
         Pixel[][]mas = map.getPixels();
-        List<Double> nums = new ArrayList<>(); //TODO: Массив со значениями штрихов по оси Y
-
-        for (int i = xLine; i >= 10; --i) { //TODO: Ищем штрихи по оси Y
+        pixelList = new ArrayList<>();
+        nums = new ArrayList<>();
+        // Ищем штрихи по оси Y
+        for (int i = xLine; i >= 10; --i) {
             boolean ok=false;
-            for (int k = 1; k < 4; ++k) //TODO: Проверяем 3 соседние пиксели на чёрной
+            // Проверяем 3 соседние пиксели на чёрной
+            for (int k = 1; k < 4; ++k)
                 if (mas[i][yLine - k].equals(mas[i][yLine], 50)){
                     ok=true;
                     break;
                 }
-            if(ok) { //TODO: Если проверка пройдена то передаём его тессеракту
+            // Если проверка пройдена то передаём его тессеракту
+            if(ok) {
 
-                if(zeroPixel == null) //TODO: Запоминаем первый пиксель
-                    zeroPixel = mas[i][yLine];
-                else if (secondPixel == null) //TODO: Запоминаем второй пиксель
-                    secondPixel = mas[i][yLine];
+                pixelList.add(  mas[i][yLine] );
 
-                //TODO: Увеличение изображения
-                int scale = 2; //TODO: Скейл увеличения, рандом, 2 и 3 наиболее эффективные, больше начинает вызывать ошибки
-
+                // Увеличение изображения
+                // Скейл увеличения, рандом, 2 и 3 наиболее эффективные, больше начинает вызывать ошибки
+                int scale = 2;
+                // Вырезаем кусок с цифрами штриха, высота в 20 пикселей рандомная
                 BufferedImage buf =  in.getSubimage(0, mas[i][yLine].getY() - 10,
-                        mas[i][yLine].getX() - 3, 20); //TODO: Вырезаем кусок с цифрами штриха, высота в 20 пикселей рандомная
+                        mas[i][yLine].getX() - 3, 20);
 
-                //TODO: Увеличение изображения(строки до пунктира)
+                //-- Увеличение изображения(5 след строк)
                 BufferedImage scaledImg = new BufferedImage(buf.getWidth() * scale, buf.getHeight() * scale,
                         BufferedImage.TYPE_INT_RGB);
 
@@ -51,90 +52,121 @@ class Tess4J {
                 gA.dispose();
                 //----------------------
 
-                //TODO: Работа Tesseract
+                //-- Работа Tesseract
                 Tesseract instance = new Tesseract();
-                instance.setDatapath(".\\Tess4J\\tessdata"); //TODO: Пуст к папке с найстройками тессеракта
-                instance.setTessVariable("tessedit_char_whitelist", "-0123456789."); //TODO: Список различаемых символов
+                // Пуст к папке с найстройками тессеракта
+                instance.setDatapath(".\\Tess4J\\tessdata");
+                // Список различаемых символов
+                instance.setTessVariable("tessedit_char_whitelist", "-0123456789.");
                 try {
-                    String result = instance.doOCR(scaledImg); //TODO: Результат распознования
+                    // Результат распознования
+                    String result = instance.doOCR(scaledImg);
 
-                    //TODO: Правка строки(Потом переделаю через исключения), плокие строки заменяем 0
-                    result = result.replaceAll("\n","").replaceAll(" ",""); //TODO:Удаляем переводы строк
+                    //-- TODO: Правка строки( Потом переделаю через исключения), плокие строки заменяем на "0"
+                    //Удаляем переводы строк
+                    result = result.replaceAll("\n","").replaceAll(" ","");
                     if(result.length() == 1){
-                        if( ( result.equals(".") )&&( result.equals(",") )) //TODO: Убиваем односимвольные строки состоящие из '.' и ','
+                        // Убиваем односимвольные строки состоящие из '.' и ','
+                        if( ( result.equals(".") )&&( result.equals(",") ))
                             result = "0";
                     } else {
                         int k = 0;
                         for (int index = 0; index < result.length(); ++index) {
-                            if ((result.charAt(index) == ',') || (result.charAt(index) == '.')) //TODO: Убираем строки с 2-мя знаками разделения
+                            // Убираем строки с 2-мя знаками разделения
+                            if ((result.charAt(index) == ',') || (result.charAt(index) == '.'))
                                 if (++k > 1) {
                                     result = "0";
                                     break;
                                 }
-
-                            if ((result.charAt(0) == '0') && ((result.charAt(1) - '0') >= 0)) { //TODO: Убираем строки типа 032, 00
+                            // Убираем строки типа 032, 00
+                            if ((result.charAt(0) == '0') && ((result.charAt(1) - '0') >= 0)) {
                                 result = "0";
                                 break;
                             }
-
-                            if ((result.charAt(index) == '-') && (index != 0)) { //TODO: Убираем строки с рандомным '-' не на 0 позиции
+                            // Убираем строки с рандомным '-' не на 0 позиции
+                            if ((result.charAt(index) == '-') && (index != 0)) {
                                 result = "0";
                                 break;
                             }
 
                         }
                     }
-                    //-------------
-                    nums.add( Double.parseDouble(result) ); //TODO: Превращаем строку в double и добавляем в список значений штрихов
+                    //------------------------------
+                    // Превращаем строку в double и добавляем в список значений штрихов
+                    nums.add(  Double.parseDouble(result) );
 
                 } catch (TesseractException e) {
                     e.printStackTrace();
                 }
+                //-------------------------------
             }
         }
         //---------------------------------------------------------------
-        findZero(nums); //TODO: Вызываем обработку списка штрихов
+        // Вызываем обработку списка штрихов
+        findZero(nums);
     }
-    private void findZero(List<Double> nums){//TODO: Поиск начала и скейла (полностью перепишу)
-
-        TreeMap<Double, Integer> ranges = new TreeMap<>(); //TODO: Хранит пары (расстояние между соседними штрихами, кол-во)
-
-        for(int index = nums.size() - 1; index > 0; --index){ //TODO: Велосипед для добавления расстояний
-            double range = Double.parseDouble( String.format("%.6f", (nums.get(index) - nums.get(index -1)) ).replace(",",".") );
+    // TODO: Поиск расстояния между штрихами, корректировка значений штрихов(полностью перепишу велосипеды)
+    private void findZero(List<Double> nums){
+        // Хранит пары (расстояние между соседними штрихами, кол-во)
+        TreeMap<Double, Integer> ranges = new TreeMap<>();
+        // Велосипед для добавления расстояний и подсчёт их кол-ва
+        for(int index = nums.size() - 1; index > 0; --index){
+            double range = Double.parseDouble( String.format("%.6f", (nums.get(index) - nums.get(index -1)) )
+                    .replace(",",".") );
             if(ranges.containsKey(range))
                 ranges.put(range, ranges.get(range) + 1);
             else
                 ranges.put(range, 1);
 
         }
-
-        Map.Entry<Double,Integer> max = null; //TODO: Ищем наиболее встречающуюся пару
+        // Ищем наиболее встречающуюся пару
+        Map.Entry<Double,Integer> max = null;
         for(Map.Entry<Double,Integer> set :ranges.entrySet()){
             if(max == null)
                 max = set;
             else if (set.getValue() > max.getValue())
                 max = set;
         }
-
-
-
-        double begin = -1; //TODO: Хранит значение первого штриха по Y
-        System.out.println(max.getKey() + " - " + max.getValue()); //TODO: Вывод "расстояния - кол-во" (для проверки)
-        for(int index =0; index < nums.size() - 1; ++index) { //TODO: Ищем первый промежуток равный самому частому
+        // Запоминаем наиболее встречающиеся расстояние между штрихами
+        range = max.getKey();
+        // Вывод "расстояния - кол-во" (для проверки)
+        System.out.println(range+ " - " + max.getValue());
+        // Ищем первый промежуток равный самому частому
+        for(int index =0; index < nums.size() - 1; ++index) {
             if( Double.parseDouble(
                     String.format("%.6f", (nums.get(index + 1) - nums.get(index)) ).replace(",",".")) == max.getKey() ){
-                begin = nums.get(index) - max.getKey()*index; //TODO: Вычитает разницу, находит значение первого штриха
+                for(int i = 0; i < nums.size(); ++i)
+                    // Относительно найденного штриха переписываем правильные значениях всех остальных
+                    nums.set(i, nums.get(index) - (index - i)*range );
                 break;
             }
         }
-
-        zeroValue = begin; //TODO: Хранит значение первого штриха
-        scale = max.getKey()/(zeroPixel.getY() - secondPixel.getY()); //TODO: Считает скейл(числовое значение 1 пикселя)
-
-        System.out.println("Begin - " + begin); //TODO: Вывод (для проверки)
-        System.out.println("Range - " + max.getKey());
+        // Вывод (для проверки)
+        System.out.println("Begin - " + nums.get(0));
+        System.out.println("Range - " + range);
     }
-    Pixel getZeroPixel(){ return zeroPixel;} //TODO: Возврат найденных значений
-    double getZeroValue(){ return zeroValue;}
-    double getScale(){ return scale;}
+    // Возврат пикселя первого штриха
+    Pixel getZeroPixel(){ return pixelList.get(0);}
+    // Принимает пиксель значение которого надо посчитать
+    double getValue(Pixel dataPixel){
+        // Пиксели начала и конца промежутка
+        Pixel begin = null, end = null;
+        // Значение ограничения снизу
+        double beginValue = 0;
+        // Ищем в какой промежуток попадает пиксель данных и его ограничения снизу и сверху
+        for(int i = 0; i < pixelList.size(); ++i){
+            if(pixelList.get(i).getY() >=  dataPixel.getY()) {
+                begin = pixelList.get(i);
+                beginValue = nums.get(i);
+            }
+            else {
+                end = pixelList.get(i);
+                break;
+            }
+        }
+        // Считаем значение 1 px данных
+        double scale = range/( begin.getY() - end.getY() );
+        // Считаем значение пикселя 
+        return ( begin.getY() - dataPixel.getY() )*scale + beginValue;
+    }
 }
