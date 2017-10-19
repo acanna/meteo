@@ -2,31 +2,31 @@ package Filters;
 
 import Data.Pixel;
 import Data.PixelMap;
-
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 class Tess4J {
+    // Коэф проверки
+    private final double accuracy = 0.2;
     // Расстояние между штрихами
     private double range = -1;
     // Хранит пиксили штрихов
     private List<Pixel> pixelList;
     // Хранит значения штрихов
     private List<Double> dataList = new ArrayList<>();
-    // Коэф проверки
-    private final double accuracy = 0.2;
 
     void processImage(int xLine, int yLine, PixelMap map, BufferedImage in) {
         // Работа с осью Y
         Pixel[][] mas = map.getPixels();
         pixelList = new ArrayList<>();
         // Хранит значения штрихов
-        List<Double>  nums = new ArrayList<>();
+        List<Double> nums = new ArrayList<>();
         // Хранит пары (расстояние между соседними штрихами, кол-во)
         TreeMap<Double, Integer> ranges = new TreeMap<>();
         // Ищем штрихи по оси Y
@@ -45,7 +45,7 @@ class Tess4J {
         // Кол-во значений штрихов
         int i = 0;
         int maxCount = 0;
-        for(Pixel px : pixelList) {
+        for (Pixel px : pixelList) {
             // Увеличение изображения
             // Скейл увеличения, рандом, 2 и 3 наиболее эффективные, больше начинает вызывать ошибки
             int scale = 2;
@@ -65,7 +65,7 @@ class Tess4J {
             //-- Работа Tesseract
             Tesseract instance = new Tesseract();
             // Пуст к папке с найстройками тессеракта
-            instance.setDatapath(".\\Tess4J\\tessdata");
+            instance.setDatapath("Tess4J/tessdata");
             // Список различаемых символов
             instance.setTessVariable("tessedit_char_whitelist", "-0123456789.");
             try {
@@ -103,24 +103,23 @@ class Tess4J {
                 // Превращаем строку в double и добавляем в список значений штрихов
                 nums.add(Double.parseDouble(result));
                 // Велосипед для добавления расстояний и подсчёт их кол-ва
-                if( i > 0 ) {
+                if (i > 0) {
                     double subRange = Double.parseDouble(String.format("%.6f", (nums.get(i) - nums.get(i - 1)))
                             .replace(",", "."));
                     if (ranges.containsKey(subRange)) {
                         int count = ranges.get(subRange);
-                        if(count > maxCount){
+                        if (count > maxCount) {
                             maxCount = count;
                             range = subRange;
                         }
 
-                        if( count > (int)( pixelList.size() * accuracy ) ){
+                        if (count > (int) (pixelList.size() * accuracy)) {
                             range = subRange;
                             System.out.println("Range - " + range + " count - " + count);
                             break;
                         }
                         ranges.put(subRange, count + 1);
-                    }
-                    else
+                    } else
                         ranges.put(subRange, 1);
                 }
                 ++i;
@@ -133,43 +132,47 @@ class Tess4J {
         // Вызываем обработку списка штрихов
         findZero(nums);
     }
+
     // TODO: Поиск расстояния между штрихами, корректировка значений штрихов(  переписать велосипеды)
-    private void findZero(List<Double> nums){
+    private void findZero(List<Double> nums) {
         // Ищем первый промежуток равный самому частому
-        for(int index =0; index < nums.size() - 1; ++index) {
-            if( Double.parseDouble(
-                    String.format("%.6f", (nums.get(index + 1) - nums.get(index)) ).replace(",",".")) == range ){
-                for(int i = 0; i < pixelList.size(); ++i)
+        for (int index = 0; index < nums.size() - 1; ++index) {
+            if (Double.parseDouble(
+                    String.format("%.6f", (nums.get(index + 1) - nums.get(index))).replace(",", ".")) == range) {
+                for (int i = 0; i < pixelList.size(); ++i)
                     // Относительно найденного штриха переписываем правильные значениях всех остальных
-                    dataList.add(i, nums.get(index) - (index - i)*range );
+                    dataList.add(i, nums.get(index) - (index - i) * range);
                 break;
             }
         }
         // Вывод (для проверки)
         System.out.println("Lower value - " + nums.get(0));
     }
+
     // Возврат пикселя первого штриха
-    Pixel getZeroPixel(){ return pixelList.get(0);}
+    Pixel getZeroPixel() {
+        return pixelList.get(0);
+    }
+
     // Принимает пиксель значение которого надо посчитать
-    double getValue(Pixel dataPixel){
+    double getValue(Pixel dataPixel) {
         // Пиксели начала и конца промежутка
         Pixel begin = null, end = null;
         // Значение ограничения снизу
         double beginValue = 0;
         // Ищем в какой промежуток попадает пиксель данных и его ограничения снизу и сверху
-        for(int i = 0; i < pixelList.size(); ++i){
-            if(pixelList.get(i).getY() >=  dataPixel.getY()) {
+        for (int i = 0; i < pixelList.size(); ++i) {
+            if (pixelList.get(i).getY() >= dataPixel.getY()) {
                 begin = pixelList.get(i);
                 beginValue = dataList.get(i);
-            }
-            else {
+            } else {
                 end = pixelList.get(i);
                 break;
             }
         }
         // Считаем значение 1 px данных
-        double scale = range/( begin.getY() - end.getY() );
+        double scale = range / (begin.getY() - end.getY());
         // Считаем значение пикселя
-        return ( begin.getY() - dataPixel.getY() )*scale + beginValue;
+        return (begin.getY() - dataPixel.getY()) * scale + beginValue;
     }
 }
