@@ -9,16 +9,24 @@ import Streams.Output;
 class System {
   private ImageData image = new ImageData();
   private DataFilter dataFilter = new DataFilter();
-  private Input in =new Input(); //  Инициализируем создание списка файлов изображений
+  //  Инициализируем создание списка файлов изображений
+  private Input in =new Input();
   private Output out = new Output();
-  private int size = in.getSize(); //  Кол-во картинок
-  System(){} //  Хз зачем я его написал, наверное так надо было
-  void searchData(){ //  Выволняет контроль за обработкой всех изображений
+  //  Кол-во картинок
+  private int size = in.getSize();
+  //  Хз зачем я его написал, наверное так надо было
+  System(){}
+  //  Выволняет контроль за обработкой всех изображений
+  void searchData(){
       int index = 0;
       while(index++ < size) {
-          image.openImage(in.next()); //  Открываем изображение
-          out.flush( dataFilter.getData(image.getPixelMap(), image.getImage()), ".\\dataBase.txt" ); //  Обработка и вывод в файл
+          //  Открываем изображение, считывает пиксили
+          image.openImage(in.next());
+          //  Обработка и вывод в файл
+          // dataBaseName - путь в который выводятся данные с графика
+          out.flush( dataFilter.getData(image.getPixelMap(), image.getImage()), ".\\dataBase.txt" );
       }
   }
-  int getResults(){ return 0;} //  Лишняя
+  //  Лишняя
+  int getResults(){ return 0;}
 }
