@@ -166,7 +166,7 @@ class Tess4J {
         }
         // Считаем значение 1 px данных
         double scale = range/( begin.getY() - end.getY() );
-        // Считаем значение пикселя 
+        // Считаем значение пикселя
         return ( begin.getY() - dataPixel.getY() )*scale + beginValue;
     }
 }

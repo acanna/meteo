@@ -2,53 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="963779db-43d5-4bdf-b47a-940e5739d384" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-01-01-2017-01-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-01-11-2017-01-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-01-21-2017-01-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-02-01-2017-02-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-02-11-2017-02-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-02-21-2017-02-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-03-01-2017-03-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-03-11-2017-03-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-03-21-2017-03-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-04-01-2017-04-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-04-11-2017-04-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-04-21-2017-04-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-05-01-2017-05-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-05-11-2017-05-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-05-21-2017-05-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-06-01-2017-06-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-06-11-2017-06-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-06-21-2017-06-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-07-01-2017-07-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-07-11-2017-07-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-07-21-2017-07-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-08-01-2017-08-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-08-11-2017-08-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-08-21-2017-08-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-09-01-2017-09-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-09-11-2017-09-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-09-21-2017-09-31.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-10-01-2017-10-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/2017-10-11-2017-10-20.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/img_preproc.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Images/wgt.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/copy/1-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/copy/3-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/copy/5-6.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/copy/7-8.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/copy/9-10.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Filters/ImageFilter.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dataBase.txt" afterPath="$PROJECT_DIR$/dataBase.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Data/ImageData.java" afterPath="$PROJECT_DIR$/src/Data/ImageData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Data/Pixel.java" afterPath="$PROJECT_DIR$/src/Data/Pixel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Data/PixelMap.java" afterPath="$PROJECT_DIR$/src/Data/PixelMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Filters/DataFilter.java" afterPath="$PROJECT_DIR$/src/Filters/DataFilter.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dataBase.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dataBase.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Filters/Tess4J.java" afterPath="$PROJECT_DIR$/src/Filters/Tess4J.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/Main.java" afterPath="$PROJECT_DIR$/src/Main/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/System.java" afterPath="$PROJECT_DIR$/src/Main/System.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Streams/Input.java" afterPath="$PROJECT_DIR$/src/Streams/Input.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Streams/Output.java" afterPath="$PROJECT_DIR$/src/Streams/Output.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -98,8 +54,8 @@
       <file leaf-file-name="Tess4J.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Filters/Tess4J.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="168" column="36" lean-forward="false" selection-start-line="168" selection-start-column="36" selection-end-line="168" selection-end-column="36" />
+            <state relative-caret-position="468">
+              <caret line="172" column="0" lean-forward="true" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
               <folding>
                 <element signature="method#processImage#0;class#Tess4J#0" expanded="false" />
               </folding>
@@ -762,8 +718,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Filters/Tess4J.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="168" column="36" lean-forward="false" selection-start-line="168" selection-start-column="36" selection-end-line="168" selection-end-column="36" />
+        <state relative-caret-position="468">
+          <caret line="172" column="0" lean-forward="true" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
           <folding>
             <element signature="method#processImage#0;class#Tess4J#0" expanded="false" />
           </folding>
