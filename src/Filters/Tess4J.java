@@ -12,6 +12,15 @@ import java.util.List;
 import java.util.TreeMap;
 
 class Tess4J {
+
+    public static boolean isWindows() {
+
+        String os = System.getProperty("os.name").toLowerCase();
+        //windows
+        return (os.contains("win"));
+
+    }
+
     // Коэф проверки
     private final double accuracy = 0.2;
     // Расстояние между штрихами
@@ -65,7 +74,11 @@ class Tess4J {
             //-- Работа Tesseract
             Tesseract instance = new Tesseract();
             // Пуст к папке с найстройками тессеракта
-            instance.setDatapath("Tess4J/tessdata");
+            String DataPath = "Tess4J/tessdata";
+            if (isWindows()) {
+                DataPath = "Tess4J\\tessdata";
+            }
+            instance.setDatapath(DataPath);
             // Список различаемых символов
             instance.setTessVariable("tessedit_char_whitelist", "-0123456789.");
             try {
