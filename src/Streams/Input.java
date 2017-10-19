@@ -1,38 +1,35 @@
 package Streams;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
-
+//  TODO: Сообщает какие картинки читать(старая часть, надо переписать)
 public class Input {
-    // TODO: Сообщает какие картинки читать (перепишу полностью)
-
-    // Путь до файла с путём до картинок
-    private final String DIR_NAME = "input.txt";
-    // Хранит дискрипторы картинок
+    // Путь до каталога с картинками
+    private final String DIR_NAME = "GraphImages";
+    //  Имя следующего изображения для обработки
+    private String fileName = "";
+    //  Хранит дискрипторы картинок
     private LinkedList<File> fileList = new LinkedList<>();
-    // Кол-во картинок
-    //
-    private int size = 0;
-
-    public Input() {
+    //  Кол-во картинок
+    private int size=0;
+    public Input(){
         try {
-            BufferedReader buf = new BufferedReader(new FileReader(new File(DIR_NAME))); // TODO: Читам файл с путём до картинок
-            File dir = new File(buf.readLine());
-            addAllImages(dir); // TODO: Рекурсивно добавляем все изображения в папке из файла
-            size = fileList.size(); // TODO: Кол-во изображений
-            if (size == 0)
+            // Дискриптор папки с картинками
+            File dir = new File(DIR_NAME);
+            //  Рекурсивно добавляем все изображения в папке из файла
+            addAllImages( dir );
+            //  Кол-во изображений
+            size = fileList.size();
+            if( size == 0 )
                 throw new IOException();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
-    private void addAllImages(File dir) { // TODO: Реккурсивно обходим папки и собираем дискрипторы картинок
+    //  Реккурсивно обходит папки и собирает дискрипторы картинок
+    private void addAllImages(File dir){
         for (File file : dir.listFiles())
             if (file.isDirectory())
                 addAllImages(file);
@@ -40,12 +37,13 @@ public class Input {
                 fileList.addLast(file);
 
     }
-
-    public String next() { // TODO: Возвращает след картинку для обработки
+    //  Возвращает след картинку для обработки
+    public String next(){
+        fileName = fileList.getFirst().getName();
         return fileList.pollFirst().getAbsolutePath();
     }
-
-    public int getSize() {
+    public int getSize(){
         return size;
     }
+    public String getName(){ return fileName;}
 }

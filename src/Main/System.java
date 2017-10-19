@@ -9,16 +9,35 @@ import Streams.Output;
 class System {
   private ImageData image = new ImageData();
   private DataFilter dataFilter = new DataFilter();
-  private Input in =new Input(); // TODO: Инициализируем создание списка файлов изображений
+  //  Инициализируем создание списка файлов изображений
+  private Input in =new Input();
   private Output out = new Output();
-  private int size = in.getSize(); // TODO: Кол-во картинок
-  System(){} // TODO: Хз зачем я его написал, наверное так надо было
-  void searchData(){ // TODO: Выволняет контроль за обработкой всех изображений
+  //  Кол-во картинок
+  private int size = in.getSize();
+  //  Хз зачем я его написал, наверное так надо было
+  System(){}
+  //  Выволняет контроль за обработкой всех изображений
+  void searchData(){
       int index = 0;
       while(index++ < size) {
-          image.openImage(in.next()); // TODO: Открываем изображение
-          out.flush( dataFilter.getData(image.getPixelMap(), image.getImage()), ".\\dataBase.txt" ); // TODO: Обработка и вывод в файл
+          //  Открываем изображение, считывает пиксили
+          image.openImage(in.next());
+
+          java.lang.System.out.println( "_________________________\nProcessing: \"" + in.getName() + "\"");
+          double proccTimeBegin = java.lang.System.nanoTime()/1000000000.0;
+
+
+          //  Обработка и вывод в файл
+          // dataBaseName - путь в который выводятся данные с графика
+          out.flush( dataFilter.getData(image.getPixelMap(), image.getImage()),
+                  ".\\GraphData\\dataBase" +(in.getName().replace("\\.jp?g","")) + ".txt" );
+
+
+          double proccTimeEnd = java.lang.System.nanoTime()/1000000000.0;
+          java.lang.System.out.println( "Processing time - " + (proccTimeEnd - proccTimeBegin));
+          java.lang.System.out.println( "Complete " );
       }
   }
-  int getResults(){ return 0;} // TODO: Лишняя
+  //  Лишняя функция
+  int getResults(){ return 0;}
 }
