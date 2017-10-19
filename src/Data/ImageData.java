@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
-
-public class ImageData { //  Открывает изображения, заполняет матрицу PixelMap (всё очевидно)
+//  Открывает изображения, заполняет матрицу PixelMap
+public class ImageData {
     private PixelMap map;
     private Raster raster;
     private BufferedImage bufImage;

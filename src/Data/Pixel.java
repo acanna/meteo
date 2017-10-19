@@ -1,8 +1,10 @@
 package Data;
-
-public class Pixel   { //  Хранит данные пикселя изображения(Убрал лишнии функции)
-    private int R, G, B; //  Цвет
-    private int x,y; //  Координаты
+//  Хранит данные пикселя изображения(Убрал лишнии функции)
+public class Pixel   {
+    //  Цвет
+    private int R, G, B;
+    //  Координаты
+    private int x,y;
     public Pixel(int x, int y, int[] RGB){
         this.x = x;
         this.y = y;
@@ -16,12 +18,6 @@ public class Pixel   { //  Хранит данные пикселя изобра
         this.G=G;
         this.B=B;
     }
-    public void setPixel(Pixel obj){
-        this.R=obj.R;
-        this.G=obj.G;
-        this.B=obj.B;
-    }
-
     //  Сравние двух пикселей, проверяет лежат ли все значения цвета рядом с цветами другого пикселя +- К
     public boolean equals(Pixel obj, int k){
 
@@ -33,7 +29,6 @@ public class Pixel   { //  Хранит данные пикселя изобра
     private boolean inRange(int A, int B, int k){
         return ( (A <= B+k)&&(A >= B-k));
     }
-
     public int getX(){ return x;}
     public int getY(){return y;}
 

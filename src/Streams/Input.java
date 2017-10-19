@@ -3,17 +3,23 @@ package Streams;
 
 import java.io.*;
 import java.util.LinkedList;
-
-public class Input { //  Сообщает какие картинки читать(перепишу полностью)
-    private final String DIR_NAME = ".\\input.txt";  //  Путь до файла с путём до картинок
-    private LinkedList<File> fileList = new LinkedList<>(); //  Хранит дискрипторы картинок
-    private int size=0; //  Кол-во картинок
+//  TODO: Сообщает какие картинки читать(старая часть, надо переписать)
+public class Input {
+    //  Путь до файла с путём до картинок
+    private final String DIR_NAME = ".\\input.txt";
+    //  Хранит дискрипторы картинок
+    private LinkedList<File> fileList = new LinkedList<>();
+    //  Кол-во картинок
+    private int size=0;
     public Input(){
         try {
-            BufferedReader buf = new BufferedReader(new FileReader(new File(DIR_NAME))); //  Читам файл с путём до картинок
+            //  Читам файл с путём до картинок
+            BufferedReader buf = new BufferedReader(new FileReader(new File(DIR_NAME)));
             File dir = new File(buf.readLine());
-            addAllImages( dir ); //  Рекурсивно добавляем все изображения в папке из файла
-            size = fileList.size(); //  Кол-во изображений
+            //  Рекурсивно добавляем все изображения в папке из файла
+            addAllImages( dir );
+            //  Кол-во изображений
+            size = fileList.size();
             if( size == 0 )
                 throw new IOException();
         } catch (IOException e) {
@@ -21,7 +27,8 @@ public class Input { //  Сообщает какие картинки читат
         }
 
     }
-    private void addAllImages(File dir){ //  Реккурсивно обходим папки и собираем дискрипторы картинок
+    //  Реккурсивно обходит папки и собирает дискрипторы картинок
+    private void addAllImages(File dir){
             for (File file : dir.listFiles())
                 if (file.isDirectory())
                     addAllImages(file);
@@ -29,7 +36,8 @@ public class Input { //  Сообщает какие картинки читат
                     fileList.addLast(file);
 
     }
-    public String next(){ //  Возвращает след картинку для обработки
+    //  Возвращает след картинку для обработки
+    public String next(){
             return fileList.pollFirst().getAbsolutePath();
     }
     public int getSize(){

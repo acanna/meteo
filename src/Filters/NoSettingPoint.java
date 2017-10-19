@@ -1,4 +1,4 @@
 package Filters;
-
-public class NoSettingPoint extends Exception{ // TODO: Будующее исключение
+// TODO: Будующее исключение( написать)
+public class NoSettingPoint extends Exception{
 }
