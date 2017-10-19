@@ -95,14 +95,16 @@ public class DataFilter {
         }
         //  Основная функция, собирает данные с графика
         private void createDataList(PixelMap map) {
-
             // TODO: Переписанная часть, нужно оптимизировать
+
             this.map = map;
             mas = map.getPixels();
             //  Изменяет изображение, чтобы его легче обработать
             changeImage();
+
             //  Вызов основной функции тессеракта, обработает ось Y
             tess4J.processImage(xLine,yLine,map,img);
+
             //  Вернёт пиксель первого штриха на оси Y
             Pixel zeroPixel = tess4J.getZeroPixel();
 
@@ -139,6 +141,7 @@ public class DataFilter {
                     }
             }
         }
+
     }
     public LinkedList< Pair<Integer,Double> > getData(PixelMap map, BufferedImage img){
         this.img = img;
