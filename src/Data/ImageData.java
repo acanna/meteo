@@ -7,11 +7,10 @@ import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
 
-public class ImageData {
+public class ImageData { // TODO: Открывает изображения, заполняет матрицу PixelMap (всё очевидно)
     private PixelMap map;
     private Raster raster;
     private BufferedImage bufImage;
-
     private PixelMap makePixels() {
         PixelMap pixelMap = new PixelMap(raster.getHeight(), raster.getWidth());
         Pixel[][] mas = pixelMap.getPixels();
@@ -19,11 +18,10 @@ public class ImageData {
         int[] RGB = new int[3];
         for (int y = 0; y < raster.getHeight(); ++y)
             for (int x = 0; x < raster.getWidth(); ++x)
-                mas[y][x] = new Pixel(x, y, raster.getPixel(x, y, RGB));
+                mas[y][x] = new Pixel( x,y, raster.getPixel(x, y, RGB) );
         return pixelMap;
     }
-
-    public void openImage(String fName) {
+    public void openImage(String fName){
         try {
             bufImage = ImageIO.read(new File(fName));
             raster = bufImage.getRaster();
@@ -32,12 +30,10 @@ public class ImageData {
         }
         map = makePixels();
     }
-
-    public PixelMap getPixelMap() {
+    public PixelMap getPixelMap(){
         return map;
     }
-
-    public BufferedImage getImage() {
+    public BufferedImage getImage(){
         return bufImage;
     }
 }
