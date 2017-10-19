@@ -23,8 +23,6 @@ public class Input {
             size = fileList.size();
             if( size == 0 )
                 throw new IOException();
-            // Имя первой картинки
-            fileName = fileList.getFirst().getName();
         } catch (IOException e) {
             e.printStackTrace();
         }

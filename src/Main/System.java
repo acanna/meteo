@@ -21,18 +21,21 @@ class System {
       int index = 0;
       while(index++ < size) {
           //  Открываем изображение, считывает пиксили
-          java.lang.System.out.println( "Processing " + in.getName());
+          image.openImage(in.next());
+
+          java.lang.System.out.println( "_________________________\nProcessing: \"" + in.getName() + "\"");
           double proccTimeBegin = java.lang.System.nanoTime()/1000000000.0;
 
-          image.openImage(in.next());
+
           //  Обработка и вывод в файл
           // dataBaseName - путь в который выводятся данные с графика
           out.flush( dataFilter.getData(image.getPixelMap(), image.getImage()),
                   ".\\GraphData\\dataBase" +(in.getName().replace("\\.jp?g","")) + ".txt" );
 
+
           double proccTimeEnd = java.lang.System.nanoTime()/1000000000.0;
-          java.lang.System.out.println( "Test time - " + (proccTimeEnd - proccTimeBegin));
-          java.lang.System.out.println( "Complete " + in.getName());
+          java.lang.System.out.println( "Processing time - " + (proccTimeEnd - proccTimeBegin));
+          java.lang.System.out.println( "Complete " );
       }
   }
   //  Лишняя функция
