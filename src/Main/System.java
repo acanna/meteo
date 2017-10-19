@@ -23,8 +23,4 @@ class System {
             out.flush(dataFilter.getData(image.getPixelMap(), image.getImage()), "dataBase.txt");
         }
     }
-
-    int getResults() {
-        return 0;
-    }
 }
