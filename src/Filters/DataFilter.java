@@ -2,129 +2,128 @@ package Filters;
 
 import Data.Pixel;
 import Data.PixelMap;
+import javafx.util.Pair;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-public class DataFilter {
-    private Pixel zeroPixel;
-    private BufferedImage img;
-    private LinkedList<Pair<Integer, Double>> dataList;
-    private double firstY, scaleY;
-    private Finder finder = new Finder();
+public class DataFilter { // TODO:  Получает данные с графика
+    private BufferedImage img; // TODO: Ссылка на открытую картинку графика
+    private LinkedList<Pair<Integer,Double>> dataList; // TODO: Выходные данные с графика
 
-    public LinkedList<Pair<Integer, Double>> getData(PixelMap map, BufferedImage img) {
-        this.img = img;
-        dataList = new LinkedList<>();
-        finder.createDataList(map);
-        return dataList;
-    }
+    private class Finder{ // TODO: Подкласс, делает всю работу
 
-    private class Finder {
-        private final double CONST_X = 60;
-        private Pixel bgPixel;
-        private Tess4J tess4J = new Tess4J();
-        private Pixel firstX;
-        private Pixel dataPixel = new Pixel(0, 0, new int[]{0, 0, 0});
-        private double pixelLengthX;
-        private java.util.List<Pixel> pixelTimeList = new ArrayList<>();
+        private int yLine = -1, xLine = -1; // TODO: Неизменяемые координаты осей: для Y оси(xLine), для Xоси (yLine)
+        private PixelMap map; // TODO: Ссылка на карту с пикселями
+        private Pixel[][] mas; // TODO: Ссылка на сам массив с пикселями
+        private Pixel bg = new Pixel(0, 0, new int[]{255, 255, 255}); // TODO: Белый пиксель(для сравнения)
+        private Pixel bl = new Pixel(0, 0, new int[]{0, 0, 0}); // TODO: Чёрный пиксель(для сравнения)
+        private Tess4J tess4J = new Tess4J(); // TODO: Сам Tesseract
 
-        private void findPoints(PixelMap map) {
-            bgPixel = new Pixel(0, 0, new int[]{255, 255, 255});
-            findZero(map);
-            findScaleX(map);
-            findScaleY(map);
+        private void changeImage(){ // TODO: Изменяет картинку, чтобы можно было её обработать
+            // TODO:  Преобразует все пиксили в чёрные и белые
+
+            for (int i = 0; i < map.getHeight(); ++i)
+                for (int j = 0; j < map.getWidth(); ++j)
+                    if (mas[i][j].equals(bl, 160)) { // TODO: k - рандомный коэф разделения цветов, брал разные, этот сильно не лажал
+                        mas[i][j].setPixel(0, 0, 0);
+                    }else
+                        mas[i][j].setPixel(255, 255, 255);
+            //---------------------------------------------------------
+            findX(); // TODO: Ищут оси X и Y, по сути делают одно и то же, но начинают искать с разных сторон
+            findY(); // TODO:
+            // TODO: Зная xLine и yLine продолжент их до пересечения
+            for (int i = 0; i < xLine; ++i) // TODO: Рисует линию сверзу вниз
+                mas[i][yLine].setPixel(0,0,0);
+
+            for (int j = map.getWidth() - 1; j >= yLine; --j) // TODO: Рисует линию слева направо
+                mas[xLine][j].setPixel(0,0,0);
+            //------------------------------------------------------------
         }
-
-        private void findZero(PixelMap map) {
+        private void findX(){
+            int L = 100; // TODO: Рандомная константа, нужна для поиска оси - проверить L пикселей на соответствие первому
             Pixel[][] mas = map.getPixels();
-            Pixel curr;
-            for (int x = map.getWidth() - 1; x > 0; --x)
-                for (int y = map.getHeight() - 1; y > 5; --y) {
-                    curr = mas[y][x];
-                    boolean ok = true;
-                    for (int k = 0; k < 5; ++k) {
-                        if (curr.equals(bgPixel, 80) || !((mas[y - k][x].equals(curr, 100)) && (mas[y][x - k].equals(curr, 100)))) {
-                            ok = false;
-                            break;
-                        }
-                    }
-                    if (ok) {
-                        for (int m = curr.getX() - 1; m > 0; --m)
-                            if (!mas[curr.getY()][m].equals(bgPixel, 80) && (mas[curr.getY() - 1][m].equals(curr, 100))) {
-                                zeroPixel = mas[curr.getY()][m];
+            for (int j = 0; j < map.getWidth(); ++j)
+                for (int i = 0; i < map.getHeight(); ++i)
+                    if (!mas[i][j].equals(bg, 100) && mas[i][j].equals(bl, 100)) { // TODO: Поиск чёрного пикселя
+                        boolean ok = true;
+
+                        for (int k = 1; k < L; ++k) // TODO: Проверка след L пикселей вниз
+                            if (!mas[i + k][j].equals(mas[i][j], 100)) { // TODO: k - рандомная константа сравнения
+                                ok = false;
                                 break;
                             }
-                        return;
+
+                        if (ok) { // TODO: Если проверка успешно пройдена, то запоминает координату
+                            yLine = mas[i][j].getX();
+                            return;
+                        }
                     }
-                }
-            zeroPixel = null;
         }
+        private void findY(){// TODO: Тож самое что и findX()
+            int L = 100;
+            for (int i = map.getHeight() - 1; i >= 0; --i)
+                for (int j = 0; j < map.getWidth(); ++j)
+                    if (!mas[i][j].equals(bg, 100) && mas[i][j].equals(bl, 100)) {
+                        boolean ok = true;
 
-        private void findScaleX(PixelMap map) {
-            Pixel[][] mas = map.getPixels();
-            Pixel zeroY = zeroPixel;
-            Pixel secondX = null;
+                        for (int k = 1; k < L; ++k)
+                            if (!mas[i][j + k].equals(mas[i][j], 100)) {
+                                ok = false;
+                                break;
+                            }
 
-            for (int k = zeroPixel.getY() + 1; k < map.getHeight(); ++k)
-                if (!mas[k][zeroPixel.getX()].equals(bgPixel)) {
-                    zeroY = mas[k][zeroPixel.getX()];
-                    zeroY.setPixel(mas[k][zeroPixel.getX() + 4]);
-                    break;
-                }
-
-            for (int k = zeroY.getX() + 1; k < map.getWidth(); ++k)
-                if (mas[zeroY.getY() + 1][k].equals(zeroY, 60)) {
-                    pixelTimeList.add(mas[zeroY.getY()][k]);
-                }
-
-            firstX = pixelTimeList.get(0);
-            secondX = pixelTimeList.get(1);
-            //pixelLengthX = secondX.getX() - firstX.getX();
-            // scaleX = CONST_X / pixelLengthX;
+                        if (ok) {
+                            xLine = mas[i][j].getY();
+                            return;
+                        }
+                    }
         }
+        private void createDataList(PixelMap map) { // TODO: Основная функция, собирает данные с графика
+            //TODO: Переписанная часть
+            this.map = map;
+            mas = map.getPixels();
 
-        private void findScaleY(PixelMap map) {
-            Pixel[][] mas = map.getPixels();
-            Pixel zeroX = zeroPixel;
+            changeImage(); // TODO: Изменяет изображение, чтобы его легче обработать
+            tess4J.processImage(xLine,yLine,map,img); // TODO: Вызов основной функции тессеракта, обработает ось Y
+            Pixel zeroPixel = tess4J.getZeroPixel(); // TODO: Вернёт пиксель первого штриха на оси Y
+            double zeroValue = tess4J.getZeroValue(); // TODO: Вернёт значение первого штриха по оси(прочитанное тессерактом)
+            double scale =tess4J.getScale(); // TODO: Вернёт скейл (значение 1 пикселя в числах)
 
-            for (int k = zeroPixel.getX() - 1; k > 0; --k)
-                if (!mas[zeroPixel.getY() - 1][k].equals(bgPixel, 60)) {
-                    zeroX = mas[zeroPixel.getY()][k];
-                    zeroX.setPixel(mas[zeroPixel.getY() - 4][k]);
-                    break;
-                }
 
-            List<Pixel> list = new ArrayList<>();
-            for (int k = zeroX.getY() - 1; k > 0; --k)
-                if (mas[k][zeroX.getX() - 1].equals(zeroX, 100)) {
-                    list.add(mas[k][zeroX.getX()]);
-                }
-
-            firstY = tess4J.makePicture(list.get(0), img, "buf1.tif");
-            double secondY = tess4J.makePicture(list.get(1), img, "buf2.tif");
-            scaleY = (secondY - firstY) / (list.get(0).getY() - list.get(1).getY());
-        }
-
-        private void createDataList(PixelMap map) {
-
-            Pixel[][] mas = map.getPixels();
-            findPoints(map);
-            int pixelY;
-            int hour = 0;
-
-            for (Pixel px : pixelTimeList) {
-                int x = px.getX();
-
-                for (int y = (zeroPixel.getY() - 1); y > 0; --y)
-                    if (mas[y][x].equals(dataPixel, 150)) {
-                        pixelY = zeroPixel.getY() - mas[y][x].getY();
-                        dataList.addLast(new Pair<>((hour++) % 24, pixelY * scaleY + firstY));
+            // TODO: Работа с осью X
+            List<Pixel> pixelTimeList = new ArrayList<>(); // TODO: Лист штрихов времени по оси Х
+            for (int i = yLine; i < map.getWidth()-10; ++i) {
+                boolean ok=false;
+                for (int k = 1; k < 4; ++k)// TODO: Проверяем 3 пикселя вниз, если хотя бы 1 чёрный, то считаем штрихом
+                    if (mas[xLine + k][i].equals(mas[xLine][i], 50)){
+                        ok=true;
                         break;
+                    }
+                if(ok)
+                    pixelTimeList.add(mas[xLine][i]); // TODO: Если проверка пройдена, то добавляем в лист
+            }
+            //------------------------------------------------------------------// TODO: старая часть
+
+            int hour = 0; // TODO: Симулирует время оси Х, по сути нумирация строк для проверки данных
+
+            for (Pixel px : pixelTimeList) { // TODO: Проходим каждый штрих оси Х
+                int x = px.getX(); // TODO: Запоминаем координату х штриха
+
+                for (int y = (zeroPixel.getY() - 1); y > 0; --y) // TODO: Идём вверх
+                    if (mas[y][x].equals(bl, 150)) { // TODO: Ищем 1 чёрный пиксель
+                        int pixelY = zeroPixel.getY() - mas[y][x].getY(); // TODO: Запоминаем разницу в пикселях между 1 штрих по оси Y и найденной точкой
+                        dataList.addLast(new Pair<>((hour++)%24, pixelY * scale + zeroValue)); // TODO: Добавляем пару значений в выходной лист:
+                        break;                                                                 // TODO: (Время, Кол-во пикселей разницы * скейл + значение 1 штриха по Y)
                     }
             }
         }
+    }
+    public LinkedList< Pair<Integer,Double> > getData(PixelMap map, BufferedImage img){
+        this.img = img;
+        dataList = new LinkedList<>(); // TODO: Выходной лист с данными графика
+        Finder finder = new Finder();
+        finder.createDataList(map); // TODO: Сбор данных
+        return dataList; // TODO: Возврат собранных данных
     }
 }
