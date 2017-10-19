@@ -135,9 +135,6 @@ class Tess4J {
     }
     // TODO: Поиск расстояния между штрихами, корректировка значений штрихов(  переписать велосипеды)
     private void findZero(List<Double> nums){
-
-        // Вывод "расстояния - кол-во" (для проверки)
-        System.out.println(range+ " - " +range);
         // Ищем первый промежуток равный самому частому
         for(int index =0; index < nums.size() - 1; ++index) {
             if( Double.parseDouble(
@@ -149,8 +146,7 @@ class Tess4J {
             }
         }
         // Вывод (для проверки)
-        System.out.println("Begin - " + nums.get(0));
-        System.out.println("Range - " + range);
+        System.out.println("Lower value - " + nums.get(0));
     }
     // Возврат пикселя первого штриха
     Pixel getZeroPixel(){ return pixelList.get(0);}
