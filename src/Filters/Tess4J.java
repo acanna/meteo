@@ -20,13 +20,13 @@ class Tess4J {
     // Коэф проверки
     private final double accuracy = 0.2;
     // Расстояние между штрихами
-    private double range = -1;
+    private double range = -999999;
     // Хранит пиксили штрихов
     private List<Pixel> pixelList;
     // Хранит значения штрихов
     private List<Double> dataList = new ArrayList<>();
 
-    void processImage(int xLine, int yLine, PixelMap map, BufferedImage in) {
+    void processImage(int xLine, int yLine, PixelMap map, BufferedImage in) throws BrokenImage {
         // Работа с осью Y
         Pixel[][] mas = map.getPixels();
         pixelList = new ArrayList<>();
@@ -47,6 +47,9 @@ class Tess4J {
             if (ok)
                 pixelList.add(mas[i][yLine]);
         }
+        // Исключение если найдено на оси Y меньше 20 штрихов ( число 20 - рандом, обычно штрихов 100+-20)
+        if(pixelList.size() < 20)
+            throw new BrokenImage("Ошибка в определении штрихов оси Y");
         // Кол-во значений штрихов
         int i = 0;
         int maxCount = 0;
@@ -81,36 +84,14 @@ class Tess4J {
                 // Результат распознования
                 String result = instance.doOCR(scaledImg);
                 //-- TODO: Правка строки, плокие строки заменяет на "0" ( переделать через исключения)
-                //Удаляем переводы строк
+                //Удаляем переводы строк и пробелы
                 result = result.replaceAll("\n", "").replaceAll(" ", "");
-                if (result.length() == 1) {
-                    // Убиваем односимвольные строки состоящие из '.' и ','
-                    if ((result.equals(".")) && (result.equals(",")))
-                        result = "0";
-                } else {
-                    int k = 0;
-                    for (int index = 0; index < result.length(); ++index) {
-                        // Убираем строки с 2-мя знаками разделения
-                        if ((result.charAt(index) == ',') || (result.charAt(index) == '.'))
-                            if (++k > 1) {
-                                result = "0";
-                                break;
-                            }
-                        // Убираем строки типа 032, 00
-                        if ((result.charAt(0) == '0') && ((result.charAt(1) - '0') >= 0)) {
-                            result = "0";
-                            break;
-                        }
-                        // Убираем строки с рандомным '-' не на 0 позиции
-                        if ((result.charAt(index) == '-') && (index != 0)) {
-                            result = "0";
-                            break;
-                        }
-
-                    }
+                // Превращаем строку в double и добавляем в список значений штрихов, перехват ошибочных строк
+                try {
+                    nums.add(Double.parseDouble(result));
+                } catch (NumberFormatException err) {
+                    nums.add(0.0);
                 }
-                // Превращаем строку в double и добавляем в список значений штрихов
-                nums.add(Double.parseDouble(result));
                 // Велосипед для добавления расстояний и подсчёт их кол-ва
                 if (i > 0) {
                     double subRange = Double.parseDouble(String.format("%.6f", (nums.get(i) - nums.get(i - 1)))
@@ -137,6 +118,8 @@ class Tess4J {
                 e.printStackTrace();
             }
         }
+        if(range == -999999)
+            throw new BrokenImage("Не удалось определить единицу деления по оси Y");
         //---------------------------------------------------------------
         // Вызываем обработку списка штрихов
         findZero(nums);
@@ -164,7 +147,9 @@ class Tess4J {
     }
 
     // Принимает пиксель значение которого надо посчитать
-    double getValue(Pixel dataPixel) {
+
+    double getValue(Pixel dataPixel) throws BrokenImage {
+
         // Пиксели начала и конца промежутка
         Pixel begin = null, end = null;
         // Значение ограничения снизу
@@ -179,6 +164,8 @@ class Tess4J {
                 break;
             }
         }
+        if( (begin == null) || (end == null) )
+            throw new BrokenImage("Не удалось определить промежуток в который попадает точка графика");
         // Считаем значение 1 px данных
         double scale = range / (begin.getY() - end.getY());
         // Считаем значение пикселя
