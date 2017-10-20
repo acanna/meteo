@@ -12,6 +12,7 @@ public class Input {
     //  Имя следующего изображения для обработки
     private String fileName = "";
     private String fileOutPath = "";
+    private String dirName = "";
     //  Хранит дискрипторы картинок
     private LinkedList<File> fileList = new LinkedList<>();
     //  Кол-во картинок
@@ -46,6 +47,7 @@ public class Input {
 
     public String next(){
         fileName = fileList.getFirst().getAbsolutePath().split("GraphImages")[1];
+        dirName = fileList.getFirst().getAbsolutePath().split("GraphImages")[1].split("\\\\")[1];
         fileOutPath = fileList.getFirst().getAbsolutePath()
                 .replace("GraphImages","GraphData")
                 .replace(".jpg",".txt");
@@ -53,7 +55,7 @@ public class Input {
         for(int i =1 ; i < dirs.length ; ++i){
             new File(fileOutPath.split( dirs[i] )[0]).mkdir();
         }
-        //--- TODO: Вставь сюда замену пути fileName и fileOutPath
+        //--- TODO: Вставь сюда замену пути fileName и fileOutPath и dirName
         //----------
         return fileList.pollFirst().getAbsolutePath();
     }
@@ -63,4 +65,5 @@ public class Input {
     }
     public String getName(){ return fileName;}
     public String getPath(){ return fileOutPath;}
+    public String getDir(){ return dirName;}
 }
