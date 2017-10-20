@@ -7,12 +7,8 @@ import Filters.DataFilter;
 import Streams.Input;
 import Streams.Output;
 
-<<<<<<< HEAD
-=======
-import static Main.OSType.isWindows;
+import java.util.LinkedList;
 
-
->>>>>>> 59dab96eff8e814c31e65faf0901f1ecb2afade6
 class System {
 
   private ImageData image = new ImageData();
@@ -22,8 +18,10 @@ class System {
   private Output out = new Output();
   //  Кол-во картинок
   private int size = in.getSize();
+  // Список необработанных изображений
+  private LinkedList<String> badImage = new LinkedList<>();
   //  Выволняет контроль за обработкой всех изображений
-  void searchData(){
+  LinkedList<String> searchData(){
       int index = 0;
       while(index++ < size) {
           try {
@@ -37,11 +35,13 @@ class System {
 
               double proccTimeEnd = java.lang.System.nanoTime() / 1000000000.0;
               java.lang.System.out.println("Processing time - " + (proccTimeEnd - proccTimeBegin));
-              java.lang.System.out.println("Complete ");
+              java.lang.System.out.println("COMPLETE");
           }catch (BrokenImage e){
               java.lang.System.out.println(e.getMessage());
-              java.lang.System.out.println("Abort");
+              badImage.addLast("    " + in.getName() + "  Причина: " + e.getMessage());
+              java.lang.System.out.println("ABORT");
           }
       }
+      return badImage;
   }
 }

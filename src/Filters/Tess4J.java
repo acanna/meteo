@@ -7,22 +7,14 @@ import net.sourceforge.tess4j.TesseractException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-<<<<<<< HEAD
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.*;
-=======
+
 import java.util.ArrayList;
->>>>>>> 59dab96eff8e814c31e65faf0901f1ecb2afade6
 import java.util.List;
 import java.util.TreeMap;
 
 import static Main.OSType.isWindows;
 
 class Tess4J {
-
-
-
     // Коэф проверки
     private final double accuracy = 0.2;
     // Расстояние между штрихами
@@ -61,7 +53,7 @@ class Tess4J {
                 pixelList.add(mas[i][yLine]);
         }
         // Исключение если найдено на оси Y меньше 20 штрихов ( число 20 - рандом, обычно штрихов 100+-20)
-        if(pixelList.size() < 20)
+        if (pixelList.size() < 20)
             throw new BrokenImage("Ошибка в определении штрихов оси Y");
         // Кол-во значений штрихов
         int i = 0;
@@ -107,7 +99,7 @@ class Tess4J {
                 // Добавляет расстояний и подсчёт их кол-ва
                 if (i > 0) {
                     double subRange = Double.parseDouble(String.format("%.6f", (nums.get(i) - nums.get(i - 1)))
-                        .replace(",", "."));
+                            .replace(",", "."));
                     if (ranges.containsKey(subRange)) {
                         int count = ranges.get(subRange);
                         if (count > maxCount) {
@@ -130,13 +122,13 @@ class Tess4J {
                 e.printStackTrace();
             }
         }
-        if(range == -999999)
+        if (range == -999999)
             throw new BrokenImage("Не удалось определить единицу деления по оси Y");
         //---------------------------------------------------------------
         // Вызываем обработку списка штрихов
         findZero(nums);
     }
-<<<<<<< HEAD
+
     // Поиск расстояния между штрихами, корректировка значений штрихов
     private void findZero(List<Double> nums){
         // Ищем первый промежуток равный самому частому
@@ -145,16 +137,6 @@ class Tess4J {
                     String.format("%.4f", nums.get(index + 1) - nums .get(index)).replace(",","."))
                     == range ){
                 for(int i = 0; i < pixelList.size(); ++i)
-=======
-
-    // TODO: Поиск расстояния между штрихами, корректировка значений штрихов(  переписать велосипеды)
-    private void findZero(List<Double> nums) {
-        // Ищем первый промежуток равный самому частому
-        for (int index = 0; index < nums.size() - 1; ++index) {
-            if (Double.parseDouble(
-                    String.format("%.6f", (nums.get(index + 1) - nums.get(index))).replace(",", ".")) == range) {
-                for (int i = 0; i < pixelList.size(); ++i)
->>>>>>> 59dab96eff8e814c31e65faf0901f1ecb2afade6
                     // Относительно найденного штриха переписываем правильные значениях всех остальных
                     dataList.add(i, nums.get(index) - (index - i) * range);
                 break;

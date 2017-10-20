@@ -5,10 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-<<<<<<< HEAD
-=======
-//  TODO: Сообщает какие картинки читать(старая часть, надо переписать)
->>>>>>> 59dab96eff8e814c31e65faf0901f1ecb2afade6
+//   Сообщает какие картинки читать
 public class Input {
     // Путь до каталога с картинками
     private final String DIR_NAME = "GraphImages";
@@ -46,13 +43,9 @@ public class Input {
     }
 
     //  Возвращает след картинку для обработки
-<<<<<<< HEAD
+
     public String next(){
         fileName = fileList.getFirst().getAbsolutePath().split("GraphImages")[1];
-=======
-    public String next() {
-        fileName = fileList.getFirst().getName();
->>>>>>> 59dab96eff8e814c31e65faf0901f1ecb2afade6
         fileOutPath = fileList.getFirst().getAbsolutePath()
                 .replace("GraphImages","GraphData")
                 .replace(".jpg",".txt");
