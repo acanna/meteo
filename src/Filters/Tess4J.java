@@ -77,7 +77,7 @@ class Tess4J {
 
             //-- Работа Tesseract
             Tesseract instance = new Tesseract();
-            // Пуст к папке с найстройками тессеракта
+            // Пусь к папке с настройками Tesseract
             String dataPath = "Tess4J/tessdata";
             if (isWindows()) {
                 dataPath = dataPath.replace("/", "\\");
