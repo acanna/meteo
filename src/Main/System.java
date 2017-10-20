@@ -31,7 +31,7 @@ class System {
               double proccTimeBegin = java.lang.System.nanoTime() / 1000000000.0;
               //  Обработка и вывод в файл
               // getPath - путь к файлу с данными
-              out.flush(dataFilter.getData(image.getPixelMap(), image.getImage()),in.getPath());
+              out.flush(dataFilter.getData(image.getPixelMap(), image.getImage(),in.getDir()),in.getPath());
 
               double proccTimeEnd = java.lang.System.nanoTime() / 1000000000.0;
               java.lang.System.out.println("Processing time - " + (proccTimeEnd - proccTimeBegin));

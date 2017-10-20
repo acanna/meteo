@@ -24,14 +24,7 @@ class Tess4J {
     // Хранит значения штрихов
     private List<Double> dataList = new ArrayList<>();
 
-    private double roundDouble(double num, int scale){
-        int k = 1;
-        for(int i = 0; i < scale ; ++i)
-            k *= 10;
-        int buf = (int)(num * k);
-        return (double)buf / k;
-    }
-    void processImage(int xLine, int yLine, PixelMap map, BufferedImage in) throws BrokenImage {
+    void processImage(int xLine, int yLine, PixelMap map, BufferedImage in, String dirName) throws BrokenImage {
         // Работа с осью Y
         Pixel[][] mas = map.getPixels();
         pixelList = new ArrayList<>();
@@ -53,80 +46,81 @@ class Tess4J {
                 pixelList.add(mas[i][yLine]);
         }
         // Исключение если найдено на оси Y меньше 20 штрихов ( число 20 - рандом, обычно штрихов 100+-20)
-        if (pixelList.size() < 20)
-            throw new BrokenImage("Ошибка в определении штрихов оси Y");
-        // Кол-во значений штрихов
-        int i = 0;
-        int maxCount = 0;
-        for (Pixel px : pixelList) {
-            // Увеличение изображения
-            // Скейл увеличения, рандом, 2 и 3 наиболее эффективные, больше начинает вызывать ошибки
-            int scale = 2;
-            // Вырезаем кусок с цифрами штриха, высота в 20 пикселей рандомная
-            BufferedImage buf = in.getSubimage(0, px.getY() - 10,
-                    px.getX() - 3, 20);
+            if (pixelList.size() < 20)
+                throw new BrokenImage("Ошибка в определении штрихов оси Y");
 
-            //-- Увеличение изображения(5 след строк)
-            BufferedImage scaledImg = new BufferedImage(buf.getWidth() * scale, buf.getHeight() * scale,
-                    BufferedImage.TYPE_INT_RGB);
+            // Кол-во значений штрихов
+            int i = 0;
+            int maxCount = 0;
+            for (Pixel px : pixelList) {
+                // Увеличение изображения
+                // Скейл увеличения, рандом, 2 и 3 наиболее эффективные, больше начинает вызывать ошибки
+                int scale = 2;
+                // Вырезаем кусок с цифрами штриха, высота в 20 пикселей рандомная
+                BufferedImage buf = in.getSubimage(0, px.getY() - 10,
+                        px.getX() - 3, 20);
 
-            Graphics2D gA = scaledImg.createGraphics();
-            gA.drawImage(buf, 0, 0, buf.getWidth() * scale, buf.getHeight() * scale, null);
-            gA.dispose();
-            //----------------------
+                //-- Увеличение изображения(5 след строк)
+                BufferedImage scaledImg = new BufferedImage(buf.getWidth() * scale, buf.getHeight() * scale,
+                        BufferedImage.TYPE_INT_RGB);
 
-            //-- Работа Tesseract
-            Tesseract instance = new Tesseract();
-            // Пусь к папке с настройками Tesseract
-            String dataPath = "Tess4J/tessdata";
-            if (isWindows()) {
-                dataPath = dataPath.replace("/", "\\");
-            }
-            instance.setDatapath(dataPath);
-            // Список различаемых символов
-            instance.setTessVariable("tessedit_char_whitelist", "-0123456789.");
-            try {
-                // Результат распознования
-                String result = instance.doOCR(scaledImg);
-                //Удаляем переводы строк и пробелы
-                result = result.replaceAll("\n", "").replaceAll(" ", "");
-                // Превращаем строку в double и добавляем в список значений штрихов, перехват ошибочных строк
+                Graphics2D gA = scaledImg.createGraphics();
+                gA.drawImage(buf, 0, 0, buf.getWidth() * scale, buf.getHeight() * scale, null);
+                gA.dispose();
+                //----------------------
+
+                //-- Работа Tesseract
+                Tesseract instance = new Tesseract();
+                // Пусь к папке с настройками Tesseract
+                String dataPath = "Tess4J/tessdata";
+                if (isWindows()) {
+                    dataPath = dataPath.replace("/", "\\");
+                }
+                instance.setDatapath(dataPath);
+                // Список различаемых символов
+                instance.setTessVariable("tessedit_char_whitelist", "-0123456789.");
                 try {
-                    nums.add(Double.parseDouble(result));
-                } catch (NumberFormatException err) {
-                    nums.add(0.0);
-                }
-                // Добавляет расстояний и подсчёт их кол-ва
-                if (i > 0) {
-                    double subRange = Double.parseDouble(String.format("%.6f", (nums.get(i) - nums.get(i - 1)))
-                            .replace(",", "."));
-                    if (ranges.containsKey(subRange)) {
-                        int count = ranges.get(subRange);
-                        if (count > maxCount) {
-                            maxCount = count;
-                            range = subRange;
-                        }
+                    // Результат распознования
+                    String result = instance.doOCR(scaledImg);
+                    //Удаляем переводы строк и пробелы
+                    result = result.replaceAll("\n", "").replaceAll(" ", "");
+                    // Превращаем строку в double и добавляем в список значений штрихов, перехват ошибочных строк
+                    try {
+                        nums.add(Double.parseDouble(result));
+                    } catch (NumberFormatException err) {
+                        nums.add(0.0);
+                    }
+                    // Добавляет расстояний и подсчёт их кол-ва
+                    if (i > 0) {
+                        double subRange = Double.parseDouble(String.format("%.6f", (nums.get(i) - nums.get(i - 1)))
+                                .replace(",", "."));
+                        if (ranges.containsKey(subRange)) {
+                            int count = ranges.get(subRange);
+                            if (count > maxCount) {
+                                maxCount = count;
+                                range = subRange;
+                            }
 
-                        if (count > (int) (pixelList.size() * accuracy)) {
-                            range = subRange;
-                            System.out.println("Range - " + range + " count - " + count);
-                            break;
-                        }
-                        ranges.put(subRange, count + 1);
-                    } else
-                        ranges.put(subRange, 1);
+                            if (count > (int) (pixelList.size() * accuracy)) {
+                                range = subRange;
+                                System.out.println("Range - " + range + " count - " + count);
+                                break;
+                            }
+                            ranges.put(subRange, count + 1);
+                        } else
+                            ranges.put(subRange, 1);
+                    }
+                    ++i;
+                    //------------------------------
+                } catch (TesseractException e) {
+                    e.printStackTrace();
                 }
-                ++i;
-                //------------------------------
-            } catch (TesseractException e) {
-                e.printStackTrace();
             }
-        }
-        if (range == -999999)
-            throw new BrokenImage("Не удалось определить единицу деления по оси Y");
-        //---------------------------------------------------------------
-        // Вызываем обработку списка штрихов
-        findZero(nums);
+            if (range == -999999)
+                throw new BrokenImage("Не удалось определить единицу деления по оси Y");
+            //---------------------------------------------------------------
+            // Вызываем обработку списка штрихов
+            findZero(nums);
     }
 
     // Поиск расстояния между штрихами, корректировка значений штрихов
@@ -153,7 +147,7 @@ class Tess4J {
 
     // Принимает пиксель значение которого надо посчитать
 
-    double getValue(Pixel dataPixel) throws BrokenImage {
+    double getValue(Pixel dataPixel, String dirName) throws BrokenImage {
 
         // Пиксели начала и конца промежутка
         Pixel begin = null, end = null;
@@ -169,8 +163,10 @@ class Tess4J {
                 break;
             }
         }
-        if( (begin == null) || (end == null) )
-            throw new BrokenImage("Не удалось определить промежуток в который попадает точка графика");
+        if( (begin == null) || (end == null) ){
+                throw new BrokenImage("Не удалось определить промежуток в который попадает точка графика");
+        }
+
         // Считаем значение 1 px данных
         double scale = range / (begin.getY() - end.getY());
         // Считаем значение пикселя
