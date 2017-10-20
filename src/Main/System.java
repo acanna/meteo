@@ -35,7 +35,7 @@ class System {
             // dataBaseName - путь в который выводятся данные с графика
             String databaseName = "GraphData/dataBase";
             if (isWindows()) {
-                databaseName = "GraphData\\dataBase";
+                databaseName = databaseName.replace("/", "\\");
             }
             out.flush(dataFilter.getData(image.getPixelMap(), image.getImage()),
                     databaseName + (in.getName().replace(".jp?g", "")) + ".txt");

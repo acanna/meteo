@@ -70,11 +70,11 @@ class Tess4J {
             //-- Работа Tesseract
             Tesseract instance = new Tesseract();
             // Пуст к папке с найстройками тессеракта
-            String DataPath = "Tess4J/tessdata";
+            String dataPath = "Tess4J/tessdata";
             if (isWindows()) {
-                DataPath = "Tess4J\\tessdata";
+                dataPath = dataPath.replace("/", "\\");
             }
-            instance.setDatapath(DataPath);
+            instance.setDatapath(dataPath);
             // Список различаемых символов
             instance.setTessVariable("tessedit_char_whitelist", "-0123456789.");
             try {
