@@ -6,7 +6,7 @@ import java.util.LinkedList;
 //  TODO: Сообщает какие картинки читать(старая часть, надо переписать)
 public class Input {
     // Путь до каталога с картинками
-    private final String DIR_NAME = ".\\GraphImages";
+    private final String DIR_NAME = "GraphImages";
     //  Имя следующего изображения для обработки
     private String fileName = "";
     //  Хранит дискрипторы картинок

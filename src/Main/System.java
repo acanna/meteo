@@ -2,6 +2,7 @@ package Main;
 
 
 import Data.ImageData;
+import Filters.BrokenImage;
 import Filters.DataFilter;
 import Streams.Input;
 import Streams.Output;
@@ -20,22 +21,27 @@ class System {
   void searchData(){
       int index = 0;
       while(index++ < size) {
-          //  Открываем изображение, считывает пиксили
-          image.openImage(in.next());
+          try {
+              //  Открываем изображение, считывает пиксили
+              image.openImage(in.next());
 
-          java.lang.System.out.println( "_________________________\nProcessing: \"" + in.getName() + "\"");
-          double proccTimeBegin = java.lang.System.nanoTime()/1000000000.0;
-
-
-          //  Обработка и вывод в файл
-          // dataBaseName - путь в который выводятся данные с графика
-          out.flush( dataFilter.getData(image.getPixelMap(), image.getImage()),
-                  ".\\GraphData\\dataBase" +(in.getName().replace("\\.jp?g","")) + ".txt" );
+              java.lang.System.out.println("_________________________\nProcessing: \"" + in.getName() + "\"");
+              double proccTimeBegin = java.lang.System.nanoTime() / 1000000000.0;
 
 
-          double proccTimeEnd = java.lang.System.nanoTime()/1000000000.0;
-          java.lang.System.out.println( "Processing time - " + (proccTimeEnd - proccTimeBegin));
-          java.lang.System.out.println( "Complete " );
+              //  Обработка и вывод в файл
+              // dataBaseName - путь в который выводятся данные с графика
+              out.flush(dataFilter.getData(image.getPixelMap(), image.getImage()),
+                      ".\\GraphData\\dataBase" + (in.getName().replace("\\.jpg", "")) + ".txt");
+
+
+              double proccTimeEnd = java.lang.System.nanoTime() / 1000000000.0;
+              java.lang.System.out.println("Processing time - " + (proccTimeEnd - proccTimeBegin));
+              java.lang.System.out.println("Complete ");
+          }catch (BrokenImage e){
+              java.lang.System.out.println(e.getMessage());
+              java.lang.System.out.println("Abort");
+          }
       }
   }
   //  Лишняя функция

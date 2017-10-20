@@ -28,7 +28,7 @@ public class DataFilter {
         //  Сам Tesseract
         private Tess4J tess4J = new Tess4J();
         //  Изменяет картинку, чтобы можно было её обработать
-        private void changeImage(){
+        private void changeImage() throws BrokenImage {
             //   Преобразует все пиксили в чёрные и белые
             for (int i = 0; i < map.getHeight(); ++i)
                 for (int j = 0; j < map.getWidth(); ++j)
@@ -41,6 +41,10 @@ public class DataFilter {
             //  Ищут оси X и Y, по сути делают одно и то же, но начинают искать с разных сторон
             findX();
             findY();
+            // Выдаёт исключение если не найдены оси Y или X
+            if(( xLine == -1)||(yLine == -1))
+                throw new BrokenImage("Не найдены оси Y или X");
+
             //  Зная xLine и yLine продолжает их до пересечения
             //  Рисует линию сверзу - вниз
             for (int i = 0; i < xLine; ++i)
@@ -94,9 +98,7 @@ public class DataFilter {
                     }
         }
         //  Основная функция, собирает данные с графика
-        private void createDataList(PixelMap map) {
-            // TODO: Переписанная часть, нужно оптимизировать
-
+        private void createDataList(PixelMap map) throws BrokenImage {
             this.map = map;
             mas = map.getPixels();
             //  Изменяет изображение, чтобы его легче обработать
@@ -127,6 +129,7 @@ public class DataFilter {
             // TODO: Надо изменить работу со временем
             //  Симулирует время оси Х, по сути нумирация строк для проверки данных
             int hour = 0;
+            int dataCount = -1;
             //  Проходим каждый штрих оси Х
             for (Pixel px : pixelTimeList) {
                 //  Запоминаем координату х штриха
@@ -137,13 +140,16 @@ public class DataFilter {
                     if (mas[y][x].equals(bl, 150)) {
                         //  Добавляем пару значений в выходной лист: (Время, значение)
                         dataList.addLast(new Pair<>((hour++)%24, tess4J.getValue(mas[y][x])));
+                        dataCount +=1;
                         break;
                     }
             }
+            if ( dataCount == -1)
+                throw new BrokenImage("Найдено слишком мало точек на графике");
         }
 
     }
-    public LinkedList< Pair<Integer,Double> > getData(PixelMap map, BufferedImage img){
+    public LinkedList< Pair<Integer,Double> > getData(PixelMap map, BufferedImage img) throws BrokenImage {
         this.img = img;
         //  Выходной лист с данными графика
         dataList = new LinkedList<>();
