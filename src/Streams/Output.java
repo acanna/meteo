@@ -10,9 +10,10 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class Output {
-    //  TODO: Должна приводить время в другой вид(пока ничего не делает)
-    private String dataFilter(int time) {
-        if (time < 10)
+
+    //  Переводит время из значения в " __:__ "
+    private String dataFilter(int time){
+        if(time < 10)
             return "0" + time + ":00";
         else
             return time + ":00";

@@ -5,12 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-//  TODO: Сообщает какие картинки читать(старая часть, надо переписать)
+//   Сообщает какие картинки читать
 public class Input {
     // Путь до каталога с картинками
     private final String DIR_NAME = "GraphImages";
     //  Имя следующего изображения для обработки
     private String fileName = "";
+    private String fileOutPath = "";
     //  Хранит дискрипторы картинок
     private LinkedList<File> fileList = new LinkedList<>();
     //  Кол-во картинок
@@ -29,7 +30,6 @@ public class Input {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     //  Реккурсивно обходит папки и собирает дискрипторы картинок
@@ -43,16 +43,24 @@ public class Input {
     }
 
     //  Возвращает след картинку для обработки
-    public String next() {
-        fileName = fileList.getFirst().getName();
+
+    public String next(){
+        fileName = fileList.getFirst().getAbsolutePath().split("GraphImages")[1];
+        fileOutPath = fileList.getFirst().getAbsolutePath()
+                .replace("GraphImages","GraphData")
+                .replace(".jpg",".txt");
+        String[] dirs = fileOutPath.split("\\\\" );
+        for(int i =1 ; i < dirs.length ; ++i){
+            new File(fileOutPath.split( dirs[i] )[0]).mkdir();
+        }
+        //--- TODO: Вставь сюда замену пути fileName и fileOutPath
+        //----------
         return fileList.pollFirst().getAbsolutePath();
     }
 
     public int getSize() {
         return size;
     }
-
-    public String getName() {
-        return fileName;
-    }
+    public String getName(){ return fileName;}
+    public String getPath(){ return fileOutPath;}
 }
