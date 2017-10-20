@@ -7,10 +7,11 @@ import Filters.DataFilter;
 import Streams.Input;
 import Streams.Output;
 
-import java.io.File;
-import java.io.IOException;
+import static Main.OSType.isWindows;
+
 
 class System {
+
   private ImageData image = new ImageData();
   private DataFilter dataFilter = new DataFilter();
   //  Инициализируем создание списка файлов изображений

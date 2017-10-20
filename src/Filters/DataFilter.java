@@ -2,7 +2,6 @@ package Filters;
 
 import Data.Pixel;
 import Data.PixelMap;
-import javafx.util.Pair;
 
 import java.awt.image.BufferedImage;
 import java.util.*;

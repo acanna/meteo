@@ -51,7 +51,7 @@ WndDir/ скор. ветра
 
 winds/ напр. и скор. ветра
 
-
+Работает для Windows и для Linux.
 
 ## Authors
 
@@ -64,6 +64,3 @@ See also the list of [contributors](https://github.com/your/project/contributors
 
 No license.
 
-## Acknowledgments
-
-* Acknowlegee

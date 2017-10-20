@@ -1,8 +1,10 @@
 package Streams;
 
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
+
 //  TODO: Сообщает какие картинки читать(старая часть, надо переписать)
 public class Input {
     // Путь до каталога с картинками
@@ -13,33 +15,35 @@ public class Input {
     //  Хранит дискрипторы картинок
     private LinkedList<File> fileList = new LinkedList<>();
     //  Кол-во картинок
-    private int size=0;
-    public Input(){
+    private int size = 0;
+
+    public Input() {
         try {
             // Дискриптор папки с картинками
             File dir = new File(DIR_NAME);
             //  Рекурсивно добавляем все изображения в папке из файла
-            addAllImages( dir );
+            addAllImages(dir);
             //  Кол-во изображений
             size = fileList.size();
-            if( size == 0 )
+            if (size == 0)
                 throw new IOException();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
     //  Реккурсивно обходит папки и собирает дискрипторы картинок
-    private void addAllImages(File dir){
-            for (File file : dir.listFiles())
-                if (file.isDirectory())
-                    addAllImages(file);
-                else
-                    fileList.addLast(file);
+    private void addAllImages(File dir) {
+        for (File file : dir.listFiles())
+            if (file.isDirectory())
+                addAllImages(file);
+            else
+                fileList.addLast(file);
 
     }
+
     //  Возвращает след картинку для обработки
-    public String next(){
+    public String next() {
         fileName = fileList.getFirst().getName();
         fileOutPath = fileList.getFirst().getAbsolutePath()
                 .replace("GraphImages","GraphData")
@@ -52,7 +56,8 @@ public class Input {
         //----------
         return fileList.pollFirst().getAbsolutePath();
     }
-    public int getSize(){
+
+    public int getSize() {
         return size;
     }
     public String getName(){ return fileName;}
