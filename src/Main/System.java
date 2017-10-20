@@ -7,7 +7,14 @@ import Filters.DataFilter;
 import Streams.Input;
 import Streams.Output;
 
+<<<<<<< HEAD
+=======
+import static Main.OSType.isWindows;
+
+
+>>>>>>> 59dab96eff8e814c31e65faf0901f1ecb2afade6
 class System {
+
   private ImageData image = new ImageData();
   private DataFilter dataFilter = new DataFilter();
   //  Инициализируем создание списка файлов изображений

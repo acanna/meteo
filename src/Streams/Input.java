@@ -1,9 +1,14 @@
 package Streams;
 
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
+<<<<<<< HEAD
+=======
+//  TODO: Сообщает какие картинки читать(старая часть, надо переписать)
+>>>>>>> 59dab96eff8e814c31e65faf0901f1ecb2afade6
 public class Input {
     // Путь до каталога с картинками
     private final String DIR_NAME = "GraphImages";
@@ -13,34 +18,41 @@ public class Input {
     //  Хранит дискрипторы картинок
     private LinkedList<File> fileList = new LinkedList<>();
     //  Кол-во картинок
-    private int size=0;
-    public Input(){
+    private int size = 0;
+
+    public Input() {
         try {
             // Дискриптор папки с картинками
             File dir = new File(DIR_NAME);
             //  Рекурсивно добавляем все изображения в папке из файла
-            addAllImages( dir );
+            addAllImages(dir);
             //  Кол-во изображений
             size = fileList.size();
-            if( size == 0 )
+            if (size == 0)
                 throw new IOException();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
     //  Реккурсивно обходит папки и собирает дискрипторы картинок
-    private void addAllImages(File dir){
-            for (File file : dir.listFiles())
-                if (file.isDirectory())
-                    addAllImages(file);
-                else
-                    fileList.addLast(file);
+    private void addAllImages(File dir) {
+        for (File file : dir.listFiles())
+            if (file.isDirectory())
+                addAllImages(file);
+            else
+                fileList.addLast(file);
 
     }
+
     //  Возвращает след картинку для обработки
+<<<<<<< HEAD
     public String next(){
         fileName = fileList.getFirst().getAbsolutePath().split("GraphImages")[1];
+=======
+    public String next() {
+        fileName = fileList.getFirst().getName();
+>>>>>>> 59dab96eff8e814c31e65faf0901f1ecb2afade6
         fileOutPath = fileList.getFirst().getAbsolutePath()
                 .replace("GraphImages","GraphData")
                 .replace(".jpg",".txt");
@@ -52,7 +64,8 @@ public class Input {
         //----------
         return fileList.pollFirst().getAbsolutePath();
     }
-    public int getSize(){
+
+    public int getSize() {
         return size;
     }
     public String getName(){ return fileName;}
