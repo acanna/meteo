@@ -7,6 +7,9 @@ import Filters.DataFilter;
 import Streams.Input;
 import Streams.Output;
 
+import java.io.File;
+import java.io.IOException;
+
 class System {
   private ImageData image = new ImageData();
   private DataFilter dataFilter = new DataFilter();
@@ -15,8 +18,6 @@ class System {
   private Output out = new Output();
   //  Кол-во картинок
   private int size = in.getSize();
-  //  Хз зачем я его написал, наверное так надо было
-  System(){}
   //  Выволняет контроль за обработкой всех изображений
   void searchData(){
       int index = 0;
@@ -24,16 +25,11 @@ class System {
           try {
               //  Открываем изображение, считывает пиксили
               image.openImage(in.next());
-
               java.lang.System.out.println("_________________________\nProcessing: \"" + in.getName() + "\"");
               double proccTimeBegin = java.lang.System.nanoTime() / 1000000000.0;
-
-
               //  Обработка и вывод в файл
-              // dataBaseName - путь в который выводятся данные с графика
-              out.flush(dataFilter.getData(image.getPixelMap(), image.getImage()),
-                      ".\\GraphData\\dataBase" + (in.getName().replace("\\.jpg", "")) + ".txt");
-
+              // getPath - путь к файлу с данными
+              out.flush(dataFilter.getData(image.getPixelMap(), image.getImage()),in.getPath());
 
               double proccTimeEnd = java.lang.System.nanoTime() / 1000000000.0;
               java.lang.System.out.println("Processing time - " + (proccTimeEnd - proccTimeBegin));
@@ -44,6 +40,4 @@ class System {
           }
       }
   }
-  //  Лишняя функция
-  int getResults(){ return 0;}
 }
