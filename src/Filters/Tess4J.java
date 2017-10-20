@@ -8,6 +8,8 @@ import net.sourceforge.tess4j.TesseractException;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.List;
 
@@ -21,6 +23,13 @@ class Tess4J {
     // Коэф проверки
     private final double accuracy = 0.2;
 
+    private double roundDouble(double num, int scale){
+        int k = 1;
+        for(int i = 0; i < scale ; ++i)
+            k *= 10;
+        int buf = (int)(num * k);
+        return (double)buf / k;
+    }
     void processImage(int xLine, int yLine, PixelMap map, BufferedImage in) throws BrokenImage {
         // Работа с осью Y
         Pixel[][] mas = map.getPixels();
@@ -74,7 +83,6 @@ class Tess4J {
             try {
                 // Результат распознования
                 String result = instance.doOCR(scaledImg);
-                //-- TODO: Правка строки, плокие строки заменяет на "0" ( переделать через исключения)
                 //Удаляем переводы строк и пробелы
                 result = result.replaceAll("\n", "").replaceAll(" ", "");
                 // Превращаем строку в double и добавляем в список значений штрихов, перехват ошибочных строк
@@ -83,10 +91,10 @@ class Tess4J {
                 } catch (NumberFormatException err) {
                     nums.add(0.0);
                 }
-                // Велосипед для добавления расстояний и подсчёт их кол-ва
+                // Добавляет расстояний и подсчёт их кол-ва
                 if (i > 0) {
                     double subRange = Double.parseDouble(String.format("%.6f", (nums.get(i) - nums.get(i - 1)))
-                            .replace(",", "."));
+                        .replace(",", "."));
                     if (ranges.containsKey(subRange)) {
                         int count = ranges.get(subRange);
                         if (count > maxCount) {
@@ -115,12 +123,13 @@ class Tess4J {
         // Вызываем обработку списка штрихов
         findZero(nums);
     }
-    // TODO: Поиск расстояния между штрихами, корректировка значений штрихов(  переписать велосипеды)
+    // Поиск расстояния между штрихами, корректировка значений штрихов
     private void findZero(List<Double> nums){
         // Ищем первый промежуток равный самому частому
         for(int index =0; index < nums.size() - 1; ++index) {
-            if( Double.parseDouble(
-                    String.format("%.6f", (nums.get(index + 1) - nums.get(index)) ).replace(",",".")) == range ){
+            if(    Double.parseDouble(
+                    String.format("%.4f", nums.get(index + 1) - nums .get(index)).replace(",","."))
+                    == range ){
                 for(int i = 0; i < pixelList.size(); ++i)
                     // Относительно найденного штриха переписываем правильные значениях всех остальных
                     dataList.add(i, nums.get(index) - (index - i)*range );

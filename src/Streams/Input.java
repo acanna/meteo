@@ -3,7 +3,7 @@ package Streams;
 
 import java.io.*;
 import java.util.LinkedList;
-//  TODO: Сообщает какие картинки читать(старая часть, надо переписать)
+
 public class Input {
     // Путь до каталога с картинками
     private final String DIR_NAME = "GraphImages";
@@ -40,7 +40,7 @@ public class Input {
     }
     //  Возвращает след картинку для обработки
     public String next(){
-        fileName = fileList.getFirst().getName();
+        fileName = fileList.getFirst().getAbsolutePath().split("GraphImages")[1];
         fileOutPath = fileList.getFirst().getAbsolutePath()
                 .replace("GraphImages","GraphData")
                 .replace(".jpg",".txt");

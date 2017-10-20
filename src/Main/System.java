@@ -7,9 +7,6 @@ import Filters.DataFilter;
 import Streams.Input;
 import Streams.Output;
 
-import java.io.File;
-import java.io.IOException;
-
 class System {
   private ImageData image = new ImageData();
   private DataFilter dataFilter = new DataFilter();

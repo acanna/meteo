@@ -56,7 +56,7 @@ public class DataFilter {
         }
         private void findX(){
             //  Рандомная константа, нужна для поиска оси - проверить L пикселей на соответствие первому
-            int L = 100;
+            int L = 500;
             Pixel[][] mas = map.getPixels();
             for (int j = 0; j < map.getWidth(); ++j)
                 for (int i = 0; i < map.getHeight(); ++i)
@@ -79,7 +79,7 @@ public class DataFilter {
         }
         //  Тож самое что и findX()
         private void findY(){
-            int L = 100;
+            int L = 500;
             for (int i = map.getHeight() - 1; i >= 0; --i)
                 for (int j = 0; j < map.getWidth(); ++j)
                     if (!mas[i][j].equals(bg, 100) && mas[i][j].equals(bl, 100)) {
@@ -125,8 +125,7 @@ public class DataFilter {
                     //  Если проверка пройдена, то добавляем в лист
                     pixelTimeList.add(mas[xLine][i]);
             }
-
-            // TODO: Надо изменить работу со временем
+            
             //  Симулирует время оси Х, по сути нумирация строк для проверки данных
             int hour = 0;
             int dataCount = -1;
@@ -139,13 +138,15 @@ public class DataFilter {
                     //  Ищем 1 чёрный пиксель
                     if (mas[y][x].equals(bl, 150)) {
                         //  Добавляем пару значений в выходной лист: (Время, значение)
-                        dataList.addLast(new Pair<>((hour++)%24, tess4J.getValue(mas[y][x])));
+                        dataList.addLast(new Pair<>((hour++)%24,
+                                Double.parseDouble(String.format("%.4f", tess4J.getValue(mas[y][x])).replace(",",".") )) );
                         dataCount +=1;
                         break;
                     }
             }
-            if ( dataCount == -1)
-                throw new BrokenImage("Найдено слишком мало точек на графике");
+            if ( dataCount < 72)
+                System.out.println("Warning: Не найдены все 72 точек(за 3 дня), возможно график обрезан или неправильный");
+            System.out.println("Найдено точек: " + dataCount);
         }
 
     }
