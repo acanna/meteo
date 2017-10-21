@@ -14,10 +14,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 class System {
-
     private ImageData image = new ImageData();
     private DataFilter dataFilter = new DataFilter();
-    //  Инициализируем создание списка файлов изображений
+    // Инициализируем создание списка файлов изображений
     private Input in = new Input();
     private Output out = new Output();
     //  Кол-во картинок
