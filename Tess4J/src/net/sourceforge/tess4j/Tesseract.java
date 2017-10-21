@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2012 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -18,30 +18,29 @@ package net.sourceforge.tess4j;
 import com.sun.jna.Pointer;
 import com.sun.jna.StringArray;
 import com.sun.jna.ptr.PointerByReference;
+import java.awt.Rectangle;
+import java.awt.image.*;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
+import java.util.*;
+import javax.imageio.IIOImage;
 import net.sourceforge.lept4j.Box;
 import net.sourceforge.lept4j.Boxa;
+import static net.sourceforge.lept4j.ILeptonica.L_CLONE;
 import net.sourceforge.lept4j.Leptonica;
-import net.sourceforge.tess4j.ITessAPI.*;
+import static net.sourceforge.tess4j.ITessAPI.TRUE;
+
+import net.sourceforge.tess4j.ITessAPI.TessBaseAPI;
+import net.sourceforge.tess4j.ITessAPI.TessOcrEngineMode;
+import net.sourceforge.tess4j.ITessAPI.TessPageIterator;
+import net.sourceforge.tess4j.ITessAPI.TessResultIterator;
+import net.sourceforge.tess4j.ITessAPI.TessResultRenderer;
+
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.tess4j.util.LoggHelper;
 import net.sourceforge.tess4j.util.PdfUtilities;
-import org.slf4j.LoggerFactory;
-
-import javax.imageio.IIOImage;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Properties;
-
-import static net.sourceforge.lept4j.ILeptonica.L_CLONE;
-import static net.sourceforge.tess4j.ITessAPI.*;
+import org.slf4j.*;
 
 /**
  * An object layer on top of <code>TessAPI</code>, provides character
@@ -61,32 +60,19 @@ import static net.sourceforge.tess4j.ITessAPI.*;
  */
 public class Tesseract implements ITesseract {
 
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(new LoggHelper().toString());
     private static Tesseract instance;
-    private final Properties prop = new Properties();
-    private final List<String> configList = new ArrayList<String>();
     private String language = "eng";
     private String datapath = "./";
     private RenderedFormat renderedFormat = RenderedFormat.TEXT;
     private int psm = -1;
     private int ocrEngineMode = TessOcrEngineMode.OEM_DEFAULT;
+    private final Properties prop = new Properties();
+    private final List<String> configList = new ArrayList<String>();
+
     private TessAPI api;
     private TessBaseAPI handle;
 
-    /**
-     * Gets an instance of the class library.
-     *
-     * @return instance
-     * @deprecated As of Release 2.0, use default constructor instead.
-     */
-    @Deprecated
-    public static synchronized Tesseract getInstance() {
-        if (instance == null) {
-            instance = new Tesseract();
-        }
-
-        return instance;
-    }
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(new LoggHelper().toString());
 
     /**
      * Returns TessAPI object.
@@ -104,6 +90,21 @@ public class Tesseract implements ITesseract {
      */
     protected TessBaseAPI getHandle() {
         return handle;
+    }
+
+    /**
+     * Gets an instance of the class library.
+     *
+     * @deprecated As of Release 2.0, use default constructor instead.
+     * @return instance
+     */
+    @Deprecated
+    public static synchronized Tesseract getInstance() {
+        if (instance == null) {
+            instance = new Tesseract();
+        }
+
+        return instance;
     }
 
     /**
@@ -159,10 +160,10 @@ public class Tesseract implements ITesseract {
     /**
      * Set the value of Tesseract's internal parameter.
      *
-     * @param key   variable name, e.g., <code>tessedit_create_hocr</code>,
-     *              <code>tessedit_char_whitelist</code>, etc.
+     * @param key variable name, e.g., <code>tessedit_create_hocr</code>,
+     * <code>tessedit_char_whitelist</code>, etc.
      * @param value value for corresponding variable, e.g., "1", "0",
-     *              "0123456789", etc.
+     * "0123456789", etc.
      */
     @Override
     public void setTessVariable(String key, String value) {
@@ -173,7 +174,7 @@ public class Tesseract implements ITesseract {
      * Sets configs to be passed to Tesseract's <code>Init</code> method.
      *
      * @param configs list of config filenames, e.g., "digits", "bazaar",
-     *                "quiet"
+     * "quiet"
      */
     @Override
     public void setConfigs(List<String> configs) {
@@ -199,9 +200,9 @@ public class Tesseract implements ITesseract {
      * Performs OCR operation.
      *
      * @param imageFile an image file
-     * @param rect      the bounding rectangle defines the region of the image to be
-     *                  recognized. A rectangle of zero dimension or <code>null</code> indicates
-     *                  the whole image.
+     * @param rect the bounding rectangle defines the region of the image to be
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
      * @return the recognized text
      * @throws TesseractException
      */
@@ -230,10 +231,10 @@ public class Tesseract implements ITesseract {
     /**
      * Performs OCR operation.
      *
-     * @param bi   a buffered image
+     * @param bi a buffered image
      * @param rect the bounding rectangle defines the region of the image to be
-     *             recognized. A rectangle of zero dimension or <code>null</code> indicates
-     *             the whole image.
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
      * @return the recognized text
      * @throws TesseractException
      */
@@ -251,9 +252,9 @@ public class Tesseract implements ITesseract {
      * Performs OCR operation.
      *
      * @param imageList a list of <code>IIOImage</code> objects
-     * @param rect      the bounding rectangle defines the region of the image to be
-     *                  recognized. A rectangle of zero dimension or <code>null</code> indicates
-     *                  the whole image.
+     * @param rect the bounding rectangle defines the region of the image to be
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
      * @return the recognized text
      * @throws TesseractException
      */
@@ -266,11 +267,11 @@ public class Tesseract implements ITesseract {
      * Performs OCR operation.
      *
      * @param imageList a list of <code>IIOImage</code> objects
-     * @param filename  input file name. Needed only for training and reading a
-     *                  UNLV zone file.
-     * @param rect      the bounding rectangle defines the region of the image to be
-     *                  recognized. A rectangle of zero dimension or <code>null</code> indicates
-     *                  the whole image.
+     * @param filename input file name. Needed only for training and reading a
+     * UNLV zone file.
+     * @param rect the bounding rectangle defines the region of the image to be
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
      * @return the recognized text
      * @throws TesseractException
      */
@@ -311,12 +312,12 @@ public class Tesseract implements ITesseract {
      *
      * @param xsize width of image
      * @param ysize height of image
-     * @param buf   pixel data
-     * @param rect  the bounding rectangle defines the region of the image to be
-     *              recognized. A rectangle of zero dimension or <code>null</code> indicates
-     *              the whole image.
-     * @param bpp   bits per pixel, represents the bit depth of the image, with 1
-     *              for binary bitmap, 8 for gray, and 24 for color RGB.
+     * @param buf pixel data
+     * @param rect the bounding rectangle defines the region of the image to be
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
+     * @param bpp bits per pixel, represents the bit depth of the image, with 1
+     * for binary bitmap, 8 for gray, and 24 for color RGB.
      * @return the recognized text
      * @throws TesseractException
      */
@@ -330,16 +331,16 @@ public class Tesseract implements ITesseract {
      * <code>SetRectangle</code>, and one or more of the <code>Get*Text</code>
      * functions.
      *
-     * @param xsize    width of image
-     * @param ysize    height of image
-     * @param buf      pixel data
+     * @param xsize width of image
+     * @param ysize height of image
+     * @param buf pixel data
      * @param filename input file name. Needed only for training and reading a
-     *                 UNLV zone file.
-     * @param rect     the bounding rectangle defines the region of the image to be
-     *                 recognized. A rectangle of zero dimension or <code>null</code> indicates
-     *                 the whole image.
-     * @param bpp      bits per pixel, represents the bit depth of the image, with 1
-     *                 for binary bitmap, 8 for gray, and 24 for color RGB.
+     * UNLV zone file.
+     * @param rect the bounding rectangle defines the region of the image to be
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
+     * @param bpp bits per pixel, represents the bit depth of the image, with 1
+     * for binary bitmap, 8 for gray, and 24 for color RGB.
      * @return the recognized text
      * @throws TesseractException
      */
@@ -389,7 +390,7 @@ public class Tesseract implements ITesseract {
      * A wrapper for {@link #setImage(int, int, ByteBuffer, Rectangle, int)}.
      *
      * @param image a rendered image
-     * @param rect  region of interest
+     * @param rect region of interest
      * @throws java.io.IOException
      */
     protected void setImage(RenderedImage image, Rectangle rect) throws IOException {
@@ -402,12 +403,12 @@ public class Tesseract implements ITesseract {
      *
      * @param xsize width of image
      * @param ysize height of image
-     * @param buf   pixel data
-     * @param rect  the bounding rectangle defines the region of the image to be
-     *              recognized. A rectangle of zero dimension or <code>null</code> indicates
-     *              the whole image.
-     * @param bpp   bits per pixel, represents the bit depth of the image, with 1
-     *              for binary bitmap, 8 for gray, and 24 for color RGB.
+     * @param buf pixel data
+     * @param rect the bounding rectangle defines the region of the image to be
+     * recognized. A rectangle of zero dimension or <code>null</code> indicates
+     * the whole image.
+     * @param bpp bits per pixel, represents the bit depth of the image, with 1
+     * for binary bitmap, 8 for gray, and 24 for color RGB.
      */
     protected void setImage(int xsize, int ysize, ByteBuffer buf, Rectangle rect, int bpp) {
         int bytespp = bpp / 8;
@@ -423,8 +424,8 @@ public class Tesseract implements ITesseract {
      * Gets recognized text.
      *
      * @param filename input file name. Needed only for reading a UNLV zone
-     *                 file.
-     * @param pageNum  page number; needed for hocr paging.
+     * file.
+     * @param pageNum page number; needed for hocr paging.
      * @return the recognized text
      */
     protected String getOCRText(String filename, int pageNum) {
@@ -495,9 +496,9 @@ public class Tesseract implements ITesseract {
     /**
      * Creates documents for given renderer.
      *
-     * @param filename   input image
+     * @param filename input image
      * @param outputbase output filename without extension
-     * @param formats    types of renderer
+     * @param formats types of renderer
      * @throws TesseractException
      */
     @Override
@@ -508,9 +509,9 @@ public class Tesseract implements ITesseract {
     /**
      * Creates documents.
      *
-     * @param filenames   array of input files
+     * @param filenames array of input files
      * @param outputbases array of output filenames without extension
-     * @param formats     types of renderer
+     * @param formats types of renderer
      * @throws TesseractException
      */
     @Override
@@ -570,7 +571,7 @@ public class Tesseract implements ITesseract {
     /**
      * Gets segmented regions at specified page iterator level.
      *
-     * @param bi                input image
+     * @param bi input image
      * @param pageIteratorLevel TessPageIteratorLevel enum
      * @return list of <code>Rectangle</code>
      * @throws TesseractException
@@ -615,7 +616,7 @@ public class Tesseract implements ITesseract {
     /**
      * Gets recognized words at specified page iterator level.
      *
-     * @param bi                input image
+     * @param bi input image
      * @param pageIteratorLevel TessPageIteratorLevel enum
      * @return list of <code>Word</code>
      */

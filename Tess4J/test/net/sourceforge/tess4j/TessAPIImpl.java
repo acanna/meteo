@@ -19,13 +19,12 @@ import com.ochafik.lang.jnaerator.runtime.NativeSize;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 import com.sun.jna.ptr.PointerByReference;
-import net.sourceforge.lept4j.Boxa;
-import net.sourceforge.lept4j.Pix;
-
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import net.sourceforge.lept4j.Boxa;
+import net.sourceforge.lept4j.Pix;
 
 public class TessAPIImpl implements TessAPI {
 

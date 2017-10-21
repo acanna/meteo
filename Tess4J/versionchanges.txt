@@ -102,3 +102,8 @@ Version 3.4.0 (1 June 2017)
 - Upgrade to Tesseract 3.05.01 (2158661)
 - Update Lept4J to 1.4.0
 - Add support for jboss-vfs protocol
+
+Version 3.4.1 (22 September 2017)
+- Not extract/copy native resource if it exists and has same file size
+- Update Tesseract 3.05.01 (e2e79c4); link against Leptonica 1.74.4
+- Update Lept4J to 1.6.1

@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2012 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,25 +15,8 @@
  */
 package net.sourceforge.tess4j;
 
-import com.ochafik.lang.jnaerator.runtime.NativeSize;
-import com.sun.jna.NativeLong;
-import com.sun.jna.Pointer;
-import com.sun.jna.StringArray;
-import com.sun.jna.ptr.PointerByReference;
-import net.sourceforge.lept4j.Box;
-import net.sourceforge.lept4j.Boxa;
-import net.sourceforge.lept4j.Leptonica;
-import net.sourceforge.lept4j.Pix;
-import net.sourceforge.lept4j.util.LeptUtils;
-import net.sourceforge.tess4j.ITessAPI.*;
-import net.sourceforge.tess4j.util.ImageIOHelper;
-import net.sourceforge.tess4j.util.LoggHelper;
-import net.sourceforge.tess4j.util.Utils;
-import org.junit.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.Assert.assertArrayEquals;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
@@ -44,9 +27,38 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
+
+import net.sourceforge.tess4j.util.ImageIOHelper;
+import net.sourceforge.tess4j.util.LoggHelper;
+import net.sourceforge.tess4j.util.Utils;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.ochafik.lang.jnaerator.runtime.NativeSize;
+import com.sun.jna.NativeLong;
+import com.sun.jna.Pointer;
+import com.sun.jna.StringArray;
+import com.sun.jna.ptr.PointerByReference;
+import net.sourceforge.lept4j.Box;
+import net.sourceforge.lept4j.Boxa;
 import static net.sourceforge.lept4j.ILeptonica.L_CLONE;
-import static net.sourceforge.tess4j.ITessAPI.*;
-import static org.junit.Assert.*;
+import net.sourceforge.lept4j.Leptonica;
+import net.sourceforge.lept4j.Pix;
+import net.sourceforge.lept4j.util.LeptUtils;
+
+import net.sourceforge.tess4j.ITessAPI.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static net.sourceforge.tess4j.ITessAPI.FALSE;
+import static net.sourceforge.tess4j.ITessAPI.TRUE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TessAPITest {
 
@@ -515,7 +527,7 @@ public class TessAPITest {
             int pointSize = pointSizeB.get();
             int fontId = fontIdB.get();
             logger.info(String.format("  font: %s, size: %d, font id: %d, bold: %b,"
-                            + " italic: %b, underlined: %b, monospace: %b, serif: %b, smallcap: %b", fontName, pointSize,
+                    + " italic: %b, underlined: %b, monospace: %b, serif: %b, smallcap: %b", fontName, pointSize,
                     fontId, bold, italic, underlined, monospace, serif, smallcaps));
         } while (api.TessPageIteratorNext(pi, level) == TRUE);
 

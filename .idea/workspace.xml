@@ -2,6 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37ccc819-3ab6-4906-9fb3-509ba32efb8f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/Сентябрь/979.8_0.1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/-5.25_0.05.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/0.0_0.1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/1.7_0.05.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/2.55_0.5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/5.7_0.025.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/6.5_0.5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/Сентябрь/979.8_0.1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/-5.25_0.05.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/1.7_0.05.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/2.55_0.5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/5.7_0.025.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/6.5_0.5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2016 — копия/Январь/999_0.25.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2016/Январь/999_0.25.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/WndSp/2016-7-10_2016-7-12.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/WndSp/2016-7-11_2016-7-13.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/WndSp/2016-7-12_2016-7-14.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/winds/2880.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/GraphDetection.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/commons-beanutils-1.9.2.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/commons-io-2.5.jar" afterPath="" />
@@ -29,6 +48,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/lib/win32-x86-64/libtesseract3051.dll" afterPath="$PROJECT_DIR$/Tess4J/lib/win32-x86-64/libtesseract3051.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/lib/win32-x86/libtesseract3051.dll" afterPath="$PROJECT_DIR$/Tess4J/lib/win32-x86/libtesseract3051.dll" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/tessdata/pdf.ttf" afterPath="$PROJECT_DIR$/Tess4J/tessdata/pdf.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Log.txt" afterPath="$PROJECT_DIR$/Log.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/build.xml" afterPath="$PROJECT_DIR$/Tess4J/build.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/dist/README.TXT" afterPath="$PROJECT_DIR$/Tess4J/dist/README.TXT" />
@@ -83,21 +103,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="System.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="System.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main/System.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="63" column="3" lean-forward="false" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TessAPI.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="141" column="14" lean-forward="false" selection-start-line="141" selection-start-column="14" selection-end-line="141" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -138,6 +148,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/Streams/Input.java" />
         <option value="$PROJECT_DIR$/src/Filters/Tess4J.java" />
+        <option value="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI.java" />
       </list>
     </option>
   </component>
@@ -172,6 +183,23 @@
             <path>
               <item name="GraphDetector" type="b2602c69:ProjectViewProjectNode" />
               <item name="GraphDetector" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GraphDetector" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GraphDetector" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GraphDetector" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GraphDetector" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Filters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GraphDetector" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GraphDetector" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Main" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -328,7 +356,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="57" y="64" width="1355" height="836" extended-state="0" />
+    <frame x="57" y="64" width="1355" height="836" extended-state="1" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991204" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -338,12 +366,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7346041" sideWeight="0.5026738" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7346041" sideWeight="0.4973262" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7346041" sideWeight="0.4973262" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2039725" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2039725" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -438,18 +466,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/System.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="63" column="3" lean-forward="false" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="141" column="14" lean-forward="false" selection-start-line="141" selection-start-column="14" selection-end-line="141" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="63" column="3" lean-forward="false" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
           <folding />
         </state>
       </provider>

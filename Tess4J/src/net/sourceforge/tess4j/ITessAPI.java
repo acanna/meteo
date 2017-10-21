@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2014 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,8 +15,11 @@
  */
 package net.sourceforge.tess4j;
 
-import com.sun.jna.*;
-
+import com.sun.jna.Callback;
+import com.sun.jna.NativeLong;
+import com.sun.jna.Pointer;
+import com.sun.jna.PointerType;
+import com.sun.jna.Structure;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,9 +27,6 @@ import java.util.List;
  * An interface represents common TessAPI classes/constants.
  */
 public interface ITessAPI {
-
-    int TRUE = 1;
-    int FALSE = 0;
 
     /**
      * When Tesseract/Cube is initialized we can choose to instantiate/load/run
@@ -39,20 +39,20 @@ public interface ITessAPI {
      * cityblock/workflow/detection/detection_storage.proto). Such enums will
      * mention the connection to OcrEngineMode in the comments.
      */
-    interface TessOcrEngineMode {
+    public static interface TessOcrEngineMode {
 
         /**
          * Run Tesseract only - fastest
          */
-        int OEM_TESSERACT_ONLY = 0;
+        public static final int OEM_TESSERACT_ONLY = 0;
         /**
          * Run Cube only - better accuracy, but slower
          */
-        int OEM_CUBE_ONLY = 1;
+        public static final int OEM_CUBE_ONLY = 1;
         /**
          * Run both and combine results - best accuracy
          */
-        int OEM_TESSERACT_CUBE_COMBINED = 2;
+        public static final int OEM_TESSERACT_CUBE_COMBINED = 2;
         /**
          * Specify this mode when calling <code>init_*()</code>, to indicate
          * that any of the above modes should be automatically inferred from the
@@ -60,103 +60,103 @@ public interface ITessAPI {
          * if not specified in any of the above should be set to the default
          * <code>OEM_TESSERACT_ONLY</code>.
          */
-        int OEM_DEFAULT = 3;
-    }
+        public static final int OEM_DEFAULT = 3;
+    };
 
     /**
      * Possible modes for page layout analysis. These *must* be kept in order of
      * decreasing amount of layout analysis to be done, except for
      * <code>OSD_ONLY</code>, so that the inequality test macros below work.
      */
-    interface TessPageSegMode {
+    public static interface TessPageSegMode {
 
         /**
          * Orientation and script detection only.
          */
-        int PSM_OSD_ONLY = 0;
+        public static final int PSM_OSD_ONLY = 0;
         /**
          * Automatic page segmentation with orientation and script detection.
          * (OSD)
          */
-        int PSM_AUTO_OSD = 1;
+        public static final int PSM_AUTO_OSD = 1;
         /**
          * Automatic page segmentation, but no OSD, or OCR.
          */
-        int PSM_AUTO_ONLY = 2;
+        public static final int PSM_AUTO_ONLY = 2;
         /**
          * Fully automatic page segmentation, but no OSD.
          */
-        int PSM_AUTO = 3;
+        public static final int PSM_AUTO = 3;
         /**
          * Assume a single column of text of variable sizes.
          */
-        int PSM_SINGLE_COLUMN = 4;
+        public static final int PSM_SINGLE_COLUMN = 4;
         /**
          * Assume a single uniform block of vertically aligned text.
          */
-        int PSM_SINGLE_BLOCK_VERT_TEXT = 5;
+        public static final int PSM_SINGLE_BLOCK_VERT_TEXT = 5;
         /**
          * Assume a single uniform block of text.
          */
-        int PSM_SINGLE_BLOCK = 6;
+        public static final int PSM_SINGLE_BLOCK = 6;
         /**
          * Treat the image as a single text line.
          */
-        int PSM_SINGLE_LINE = 7;
+        public static final int PSM_SINGLE_LINE = 7;
         /**
          * Treat the image as a single word.
          */
-        int PSM_SINGLE_WORD = 8;
+        public static final int PSM_SINGLE_WORD = 8;
         /**
          * Treat the image as a single word in a circle.
          */
-        int PSM_CIRCLE_WORD = 9;
+        public static final int PSM_CIRCLE_WORD = 9;
         /**
          * Treat the image as a single character.
          */
-        int PSM_SINGLE_CHAR = 10;
+        public static final int PSM_SINGLE_CHAR = 10;
         /**
          * Find as much text as possible in no particular order.
          */
-        int PSM_SPARSE_TEXT = 11;
+        public static final int PSM_SPARSE_TEXT = 11;
         /**
          * Sparse text with orientation and script detection.
          */
-        int PSM_SPARSE_TEXT_OSD = 12;
+        public static final int PSM_SPARSE_TEXT_OSD = 12;
         /**
          * Number of enum entries.
          */
-        int PSM_COUNT = 13;
-    }
+        public static final int PSM_COUNT = 13;
+    };
 
     /**
      * Enum of the elements of the page hierarchy, used in
      * <code>ResultIterator</code> to provide functions that operate on each
      * level without having to have 5x as many functions.
      */
-    interface TessPageIteratorLevel {
+    public static interface TessPageIteratorLevel {
 
         /**
          * Block of text/image/separator line.
          */
-        int RIL_BLOCK = 0;
+        public static final int RIL_BLOCK = 0;
         /**
          * Paragraph within a block.
          */
-        int RIL_PARA = 1;
+        public static final int RIL_PARA = 1;
         /**
          * Line within a paragraph.
          */
-        int RIL_TEXTLINE = 2;
+        public static final int RIL_TEXTLINE = 2;
         /**
          * Word within a textline.
          */
-        int RIL_WORD = 3;
+        public static final int RIL_WORD = 3;
         /**
          * Symbol/character within a word.
          */
-        int RIL_SYMBOL = 4;
-    }
+        public static final int RIL_SYMBOL = 4;
+    };
 
     /**
      * Possible types for a POLY_BLOCK or ColPartition. Must be kept in sync
@@ -164,73 +164,73 @@ public interface ITessAPI {
      * functions below, as well as <code>kPolyBlockNames</code> in
      * publictypes.cpp. Used extensively by ColPartition, and POLY_BLOCK.
      */
-    interface TessPolyBlockType {
+    public static interface TessPolyBlockType {
 
         /**
          * Type is not yet known. Keep as the first element.
          */
-        int PT_UNKNOWN = 0;
+        public static final int PT_UNKNOWN = 0;
         /**
          * Text that lives inside a column.
          */
-        int PT_FLOWING_TEXT = 1;
+        public static final int PT_FLOWING_TEXT = 1;
         /**
          * Text that spans more than one column.
          */
-        int PT_HEADING_TEXT = 2;
+        public static final int PT_HEADING_TEXT = 2;
         /**
          * Text that is in a cross-column pull-out region.
          */
-        int PT_PULLOUT_TEXT = 3;
+        public static final int PT_PULLOUT_TEXT = 3;
         /**
          * Partition belonging to an equation region.
          */
-        int PT_EQUATION = 4;
+        public static final int PT_EQUATION = 4;
         /**
          * Partition has inline equation.
          */
-        int PT_INLINE_EQUATION = 5;
+        public static final int PT_INLINE_EQUATION = 5;
         /**
          * Partition belonging to a table region.
          */
-        int PT_TABLE = 6;
+        public static final int PT_TABLE = 6;
         /**
          * Text-line runs vertically.
          */
-        int PT_VERTICAL_TEXT = 7;
+        public static final int PT_VERTICAL_TEXT = 7;
         /**
          * Text that belongs to an image.
          */
-        int PT_CAPTION_TEXT = 8;
+        public static final int PT_CAPTION_TEXT = 8;
         /**
          * Image that lives inside a column.
          */
-        int PT_FLOWING_IMAGE = 9;
+        public static final int PT_FLOWING_IMAGE = 9;
         /**
          * Image that spans more than one column.
          */
-        int PT_HEADING_IMAGE = 10;
+        public static final int PT_HEADING_IMAGE = 10;
         /**
          * Image that is in a cross-column pull-out region.
          */
-        int PT_PULLOUT_IMAGE = 11;
+        public static final int PT_PULLOUT_IMAGE = 11;
         /**
          * Horizontal Line.
          */
-        int PT_HORZ_LINE = 12;
+        public static final int PT_HORZ_LINE = 12;
         /**
          * Vertical Line.
          */
-        int PT_VERT_LINE = 13;
+        public static final int PT_VERT_LINE = 13;
         /**
          * Lies outside of any column.
          */
-        int PT_NOISE = 14;
+        public static final int PT_NOISE = 14;
         /**
          * Number of enum entries.
          */
-        int PT_COUNT = 15;
-    }
+        public static final int PT_COUNT = 15;
+    };
 
     /**
      * NOTA BENE: Fully justified paragraphs (text aligned to both left and
@@ -241,29 +241,29 @@ public interface ITessAPI {
      * Interpretation for text read in vertical lines: "Left" is wherever the
      * starting reading position is.
      */
-    interface TessParagraphJustification {
+    public static interface TessParagraphJustification {
 
         /**
          * The alignment is not clearly one of the other options. This could
          * happen for example if there are only one or two lines of text or the
          * text looks like source code or poetry.
          */
-        int JUSTIFICATION_UNKNOWN = 0;
+        public static final int JUSTIFICATION_UNKNOWN = 0;
         /**
          * Each line, except possibly the first, is flush to the same left tab
          * stop.
          */
-        int JUSTIFICATION_LEFT = 1;
+        public static final int JUSTIFICATION_LEFT = 1;
         /**
          * The text lines of the paragraph are centered about a line going down
          * through their middle of the text lines.
          */
-        int JUSTIFICATION_CENTER = 2;
+        public static final int JUSTIFICATION_CENTER = 2;
         /**
          * Each line, except possibly the first, is flush to the same right tab
          * stop.
          */
-        int JUSTIFICATION_RIGHT = 3;
+        public static final int JUSTIFICATION_RIGHT = 3;
     }
 
     /**
@@ -300,13 +300,13 @@ public interface ITessAPI {
      * <br>
      * The values of this enum match the convention of Tesseract's osdetect.h
      */
-    interface TessOrientation {
+    public static interface TessOrientation {
 
-        int ORIENTATION_PAGE_UP = 0;
-        int ORIENTATION_PAGE_RIGHT = 1;
-        int ORIENTATION_PAGE_DOWN = 2;
-        int ORIENTATION_PAGE_LEFT = 3;
-    }
+        public static final int ORIENTATION_PAGE_UP = 0;
+        public static final int ORIENTATION_PAGE_RIGHT = 1;
+        public static final int ORIENTATION_PAGE_DOWN = 2;
+        public static final int ORIENTATION_PAGE_LEFT = 3;
+    };
 
     /**
      * The grapheme clusters within a line of text are laid out logically in
@@ -316,12 +316,12 @@ public interface ITessAPI {
      * For English text, the writing direction is left-to-right. For the Chinese
      * text in the above example, the writing direction is top-to-bottom.
      */
-    interface TessWritingDirection {
+    public static interface TessWritingDirection {
 
-        int WRITING_DIRECTION_LEFT_TO_RIGHT = 0;
-        int WRITING_DIRECTION_RIGHT_TO_LEFT = 1;
-        int WRITING_DIRECTION_TOP_TO_BOTTOM = 2;
-    }
+        public static final int WRITING_DIRECTION_LEFT_TO_RIGHT = 0;
+        public static final int WRITING_DIRECTION_RIGHT_TO_LEFT = 1;
+        public static final int WRITING_DIRECTION_TOP_TO_BOTTOM = 2;
+    };
 
     /**
      * The text lines are read in the given sequence.<br>
@@ -334,25 +334,15 @@ public interface ITessAPI {
      * <code>WRITING_DIRECTION_LEFT_TO_RIGHT</code> implies
      * <code>TEXTLINE_ORDER_TOP_TO_BOTTOM</code>.
      */
-    interface TessTextlineOrder {
+    public static interface TessTextlineOrder {
 
-        int TEXTLINE_ORDER_LEFT_TO_RIGHT = 0;
-        int TEXTLINE_ORDER_RIGHT_TO_LEFT = 1;
-        int TEXTLINE_ORDER_TOP_TO_BOTTOM = 2;
-    }
+        public static final int TEXTLINE_ORDER_LEFT_TO_RIGHT = 0;
+        public static final int TEXTLINE_ORDER_RIGHT_TO_LEFT = 1;
+        public static final int TEXTLINE_ORDER_TOP_TO_BOTTOM = 2;
+    };
 
-    /**
-     * Callback for <code>cancel_func</code>.
-     */
-    interface CANCEL_FUNC extends Callback {
-
-        /**
-         * @param cancel_this
-         * @param words
-         * @return
-         */
-        boolean invoke(Pointer cancel_this, int words);
-    }
+    public static final int TRUE = 1;
+    public static final int FALSE = 0;
 
     /**
      * Base class for all tesseract APIs. Specific classes can add ability to
@@ -361,7 +351,7 @@ public interface ITessAPI {
      * the data types so that users of this class don't have to include any
      * other Tesseract headers.
      */
-    class TessBaseAPI extends PointerType {
+    public static class TessBaseAPI extends PointerType {
 
         public TessBaseAPI(Pointer address) {
             super(address);
@@ -370,7 +360,7 @@ public interface ITessAPI {
         public TessBaseAPI() {
             super();
         }
-    }
+    };
 
     /**
      * Class to iterate over tesseract page structure, providing access to all
@@ -387,7 +377,7 @@ public interface ITessAPI {
      * which adds in the ability to access OCR output with text-specific
      * methods.
      */
-    class TessPageIterator extends PointerType {
+    public static class TessPageIterator extends PointerType {
 
         public TessPageIterator(Pointer address) {
             super(address);
@@ -396,12 +386,12 @@ public interface ITessAPI {
         public TessPageIterator() {
             super();
         }
-    }
+    };
 
     /**
      * MutableIterator adds access to internal data structures.
      */
-    class TessMutableIterator extends PointerType {
+    public static class TessMutableIterator extends PointerType {
 
         public TessMutableIterator(Pointer address) {
             super(address);
@@ -410,14 +400,14 @@ public interface ITessAPI {
         public TessMutableIterator() {
             super();
         }
-    }
+    };
 
     /**
      * Iterator for tesseract results that is capable of iterating in proper
      * reading order over Bi Directional (e.g. mixed Hebrew and English) text.
      * ResultIterator adds text-specific methods for access to OCR output.
      */
-    class TessResultIterator extends PointerType {
+    public static class TessResultIterator extends PointerType {
 
         public TessResultIterator(Pointer address) {
             super(address);
@@ -426,9 +416,9 @@ public interface ITessAPI {
         public TessResultIterator() {
             super();
         }
-    }
+    };
 
-    class TessChoiceIterator extends PointerType {
+    public static class TessChoiceIterator extends PointerType {
 
         public TessChoiceIterator(Pointer address) {
             super(address);
@@ -437,14 +427,14 @@ public interface ITessAPI {
         public TessChoiceIterator() {
             super();
         }
-    }
+    };
 
     /**
      * Interface for rendering tesseract results into a document, such as text,
      * HOCR or pdf. This class is abstract. Specific classes handle individual
      * formats. This interface is then used to inject the renderer class into
      * tesseract when processing images.
-     * <p>
+     *
      * For simplicity implementing this with tesseract version 3.01, the
      * renderer contains document state that is cleared from document to
      * document just as the TessBaseAPI is. This way the base API can just
@@ -452,7 +442,7 @@ public interface ITessAPI {
      * renderers can manage the associated state needed for the specific formats
      * in addition to the heuristics for producing it.
      */
-    class TessResultRenderer extends PointerType {
+    public static class TessResultRenderer extends PointerType {
 
         public TessResultRenderer(Pointer address) {
             super(address);
@@ -461,7 +451,7 @@ public interface ITessAPI {
         public TessResultRenderer() {
             super();
         }
-    }
+    };
 
     /**
      * Description of the output of the OCR engine. This structure is used as
@@ -475,7 +465,7 @@ public interface ITessAPI {
      * is not null then it is called with the number of user words found. If it
      * returns true then operation is cancelled.
      */
-    class ETEXT_DESC extends Structure {
+    public static class ETEXT_DESC extends Structure {
 
         /**
          * chars in this buffer(0). Total number of UTF-8 bytes for this run.
@@ -538,7 +528,7 @@ public interface ITessAPI {
      * code needs to be prepared to receive UTF-8 coded characters for
      * characters such as bullet and fancy quotes.
      */
-    class EANYCODE_CHAR extends Structure {
+    public static class EANYCODE_CHAR extends Structure {
 
         /**
          * character itself, one single UTF-8 byte long. A Unicode character may
@@ -594,7 +584,21 @@ public interface ITessAPI {
         }
     }
 
-    class TimeVal extends Structure {
+    /**
+     * Callback for <code>cancel_func</code>.
+     */
+    interface CANCEL_FUNC extends Callback {
+
+        /**
+         *
+         * @param cancel_this
+         * @param words
+         * @return
+         */
+        boolean invoke(Pointer cancel_this, int words);
+    };
+
+    public static class TimeVal extends Structure {
 
         /**
          * seconds

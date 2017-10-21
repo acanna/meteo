@@ -7,6 +7,20 @@ import java.awt.image.BufferedImage;
 
 public class ImageDeskew {
 
+    /**
+     * Representation of a line in the image.
+     */
+    public class HoughLine {
+
+        // count of points in the line
+        public int count = 0;
+        // index in matrix.
+        public int index = 0;
+        // the line is represented as all x, y that solve y * cos(alpha) - x *
+        // sin(alpha) = d
+        public double alpha;
+        public double d;
+    }
     // the source image
     private BufferedImage cImage;
     // the range of angles to search for lines
@@ -77,7 +91,7 @@ public class ImageDeskew {
 
         int alphaIndex;
         int dIndex;
-
+        
         for (int i = 0; i < count; i++) {
             dIndex = hl[i].index / cSteps; // integer division, no
             // remainder
@@ -149,20 +163,5 @@ public class ImageDeskew {
 
     public double getAlpha(int index) {
         return this.cAlphaStart + (index * this.cAlphaStep);
-    }
-
-    /**
-     * Representation of a line in the image.
-     */
-    public class HoughLine {
-
-        // count of points in the line
-        public int count = 0;
-        // index in matrix.
-        public int index = 0;
-        // the line is represented as all x, y that solve y * cos(alpha) - x *
-        // sin(alpha) = d
-        public double alpha;
-        public double d;
     }
 }

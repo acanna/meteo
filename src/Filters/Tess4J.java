@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-import static Main.OSType.isWindows;
-
 class Tess4J {
     // Коэф проверки
     private final double accuracy = 0.2;
@@ -73,9 +71,6 @@ class Tess4J {
                 Tesseract instance = new Tesseract();
                 // Пусь к папке с настройками Tesseract
                 String dataPath = "Tess4J/tessdata";
-                if (isWindows()) {
-                    dataPath = dataPath.replace("/", "\\");
-                }
                 instance.setDatapath(dataPath);
                 // Список различаемых символов
                 instance.setTessVariable("tessedit_char_whitelist", "-0123456789.");
