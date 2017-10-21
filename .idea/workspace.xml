@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="37ccc819-3ab6-4906-9fb3-509ba32efb8f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/Сентябрь/979.8_0.1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/-5.25_0.05.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/0.0_0.1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/1.7_0.05.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/2.55_0.5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/5.7_0.025.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015 — копия/март/6.5_0.5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/Сентябрь/979.8_0.1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/-5.25_0.05.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/1.7_0.05.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/2.55_0.5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/5.7_0.025.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2015/март/6.5_0.5.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2016 — копия/Январь/999_0.25.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/2016/Январь/999_0.25.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/WndSp/2016-7-10_2016-7-12.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/WndSp/2016-7-11_2016-7-13.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/WndSp/2016-7-12_2016-7-14.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphData/winds/2880.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/GraphDetection.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/commons-beanutils-1.9.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/commons-io-2.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/commons-logging-1.2.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/ghost4j-1.0.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/hamcrest-core-1.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/itext-2.1.7.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/jai-imageio-core-1.3.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/jboss-vfs-3.2.12.Final.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/jcl-over-slf4j-1.7.25.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/jna-4.1.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/jul-to-slf4j-1.7.25.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/junit-4.12.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/lept4j-1.4.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/log4j-1.2.17.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/log4j-over-slf4j-1.7.25.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/logback-classic-1.2.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/logback-core-1.2.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/slf4j-api-1.7.25.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/tess4j-3.4.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Jars/xmlgraphics-commons-1.5.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/Tess4J.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/dist/tess4j-3.4.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Tess4J/lib/lept4j-1.4.0.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/lib/win32-x86-64/libtesseract3051.dll" afterPath="$PROJECT_DIR$/Tess4J/lib/win32-x86-64/libtesseract3051.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/lib/win32-x86/libtesseract3051.dll" afterPath="$PROJECT_DIR$/Tess4J/lib/win32-x86/libtesseract3051.dll" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/tessdata/pdf.ttf" afterPath="$PROJECT_DIR$/Tess4J/tessdata/pdf.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Log.txt" afterPath="$PROJECT_DIR$/Log.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/build.xml" afterPath="$PROJECT_DIR$/Tess4J/build.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/dist/README.TXT" afterPath="$PROJECT_DIR$/Tess4J/dist/README.TXT" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/lib/nblibraries.properties" afterPath="$PROJECT_DIR$/Tess4J/lib/nblibraries.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/lib/pdfpagecount.ps" afterPath="$PROJECT_DIR$/Tess4J/lib/pdfpagecount.ps" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/nbproject/build-impl.xml" afterPath="$PROJECT_DIR$/Tess4J/nbproject/build-impl.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/nbproject/genfiles.properties" afterPath="$PROJECT_DIR$/Tess4J/nbproject/genfiles.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/nbproject/private/private.properties" afterPath="$PROJECT_DIR$/Tess4J/nbproject/private/private.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/nbproject/private/private.xml" afterPath="$PROJECT_DIR$/Tess4J/nbproject/private/private.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/nbproject/project.properties" afterPath="$PROJECT_DIR$/Tess4J/nbproject/project.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/nbproject/project.xml" afterPath="$PROJECT_DIR$/Tess4J/nbproject/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/readme.html" afterPath="$PROJECT_DIR$/Tess4J/readme.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/com/recognition/software/jdeskew/ImageDeskew.java" afterPath="$PROJECT_DIR$/Tess4J/src/com/recognition/software/jdeskew/ImageDeskew.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/com/recognition/software/jdeskew/ImageUtil.java" afterPath="$PROJECT_DIR$/Tess4J/src/com/recognition/software/jdeskew/ImageUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/ITessAPI.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/ITessAPI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/ITesseract.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/ITesseract.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI1.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/Tesseract.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/Tesseract.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/Tesseract1.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/Tesseract1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TesseractException.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TesseractException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/Word.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/Word.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/ImageHelper.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/ImageHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/ImageIOHelper.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/ImageIOHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/LoadLibs.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/LoadLibs.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/LoggHelper.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/LoggHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/LoggerConfig.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/LoggerConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/PdfUtilities.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/PdfUtilities.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/Utils.java" afterPath="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/util/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/tessdata/configs/hocr" afterPath="$PROJECT_DIR$/Tess4J/tessdata/configs/hocr" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/log4j.properties" afterPath="$PROJECT_DIR$/Tess4J/test/log4j.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/ProgressMonitor.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/ProgressMonitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TessAPI1Test.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TessAPI1Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TessAPIImpl.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TessAPIImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TessAPITest.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TessAPITest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/Tesseract1Test.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/Tesseract1Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TesseractTest.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TesseractTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TestFolderExtraction.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/TestFolderExtraction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/Word.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/Word.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/util/PdfUtilitiesTest.java" afterPath="$PROJECT_DIR$/Tess4J/test/net/sourceforge/tess4j/util/PdfUtilitiesTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/test/resources/test-data/eurotext_unlv.uzn" afterPath="$PROJECT_DIR$/Tess4J/test/resources/test-data/eurotext_unlv.uzn" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Tess4J/versionchanges.txt" afterPath="$PROJECT_DIR$/Tess4J/versionchanges.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Filters/Tess4J.java" afterPath="$PROJECT_DIR$/src/Filters/Tess4J.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Streams/Input.java" afterPath="$PROJECT_DIR$/src/Streams/Input.java" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="System.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Main/System.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="63" column="3" lean-forward="false" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Input.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Streams/Input.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Filters/DataFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="143">
+              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Streams/Input.java" />
+        <option value="$PROJECT_DIR$/src/Filters/Tess4J.java" />
+        <option value="$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="57" />
+    <option name="y" value="64" />
+    <option name="width" value="1355" />
+    <option name="height" value="836" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GraphDetector" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GraphDetector" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GraphDetector" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GraphDetector" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GraphDetector" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GraphDetector" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Filters" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GraphDetector" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GraphDetector" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Main" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Tess4J/lib/win32-x86-64/libtesseract3051.dll" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.System">
+    <configuration name="System" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="Main.System" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="GraphDetector" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Application.System" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="37ccc819-3ab6-4906-9fb3-509ba32efb8f" name="Default" comment="" />
+      <created>1508602180702</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1508602180702</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="57" y="64" width="1355" height="836" extended-state="1" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991204" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7346041" sideWeight="0.5026738" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7346041" sideWeight="0.4973262" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991204" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2039725" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398827" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="5" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Filters/Tess4J.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="27" column="26" lean-forward="false" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Filters/Tess4J.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Streams/Input.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Filters/DataFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GraphDetection.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Filters/Tess4J.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="88" column="32" lean-forward="false" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GraphDetector.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2300">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tess4J/tessdata/eng.cube.word-freq">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="99722" column="0" lean-forward="false" selection-start-line="99722" selection-start-column="0" selection-end-line="99722" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tess4J/src/net/sourceforge/tess4j/TessAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="141" column="14" lean-forward="false" selection-start-line="141" selection-start-column="14" selection-end-line="141" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="63" column="3" lean-forward="false" selection-start-line="63" selection-start-column="3" selection-end-line="63" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>GraphDetector</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Jars</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

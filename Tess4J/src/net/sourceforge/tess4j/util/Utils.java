@@ -26,7 +26,7 @@ public class Utils {
     /**
      * Writes byte array to file.
      *
-     * @param data    byte array
+     * @param data byte array
      * @param outFile output file
      * @throws IOException
      */
@@ -53,7 +53,7 @@ public class Utils {
      * class or an interface for display purpose.
      *
      * @param value the constant value
-     * @param c     type of class or interface
+     * @param c type of class or interface
      * @return name
      */
     public static String getConstantName(Object value, Class c) {

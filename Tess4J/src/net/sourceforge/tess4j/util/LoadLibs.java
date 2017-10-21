@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2014 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -14,15 +14,6 @@
  * the License.
  */
 package net.sourceforge.tess4j.util;
-
-import com.sun.jna.Native;
-import com.sun.jna.Platform;
-import net.sourceforge.tess4j.TessAPI;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.jboss.vfs.VFS;
-import org.jboss.vfs.VirtualFile;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +27,17 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.jboss.vfs.VFS;
+import org.jboss.vfs.VirtualFile;
+import org.slf4j.LoggerFactory;
+
+import com.sun.jna.Native;
+import com.sun.jna.Platform;
+
+import net.sourceforge.tess4j.TessAPI;
+
 /**
  * Loads native libraries from JAR or project folder.
  *
@@ -44,14 +46,16 @@ import java.util.jar.JarFile;
  */
 public class LoadLibs {
 
+    private static final String VFS_PROTOCOL = "vfs";
+    private static final String JNA_LIBRARY_PATH = "jna.library.path";
     public static final String TESS4J_TEMP_DIR = new File(System.getProperty("java.io.tmpdir"), "tess4j").getPath();
+
     /**
      * Native library name.
      */
     public static final String LIB_NAME = "libtesseract3051";
     public static final String LIB_NAME_NON_WIN = "tesseract";
-    private static final String VFS_PROTOCOL = "vfs";
-    private static final String JNA_LIBRARY_PATH = "jna.library.path";
+
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(new LoggHelper().toString());
 
     static {
@@ -148,7 +152,7 @@ public class LoadLibs {
      * to the destination path.
      *
      * @param jarConnection
-     * @param destPath      destination file or directory
+     * @param destPath destination file or directory
      */
     static void copyJarResourceToPath(JarURLConnection jarConnection, File destPath) {
         try (JarFile jarFile = jarConnection.getJarFile()) {
@@ -157,7 +161,7 @@ public class LoadLibs {
             /**
              * Iterate all entries in the jar file.
              */
-            for (Enumeration<JarEntry> e = jarFile.entries(); e.hasMoreElements(); ) {
+            for (Enumeration<JarEntry> e = jarFile.entries(); e.hasMoreElements();) {
                 JarEntry jarEntry = e.nextElement();
                 String jarEntryName = jarEntry.getName();
 
@@ -166,15 +170,16 @@ public class LoadLibs {
                  */
                 if (jarEntryName.startsWith(jarConnectionEntryName + "/")) {
                     String filename = jarEntryName.substring(jarConnectionEntryName.length());
-                    File currentFile = new File(destPath, filename);
+                    File targetFile = new File(destPath, filename);
 
                     if (jarEntry.isDirectory()) {
-                        currentFile.mkdirs();
+                        targetFile.mkdirs();
                     } else {
-                        currentFile.deleteOnExit();
-                        try (InputStream is = jarFile.getInputStream(jarEntry);
-                             OutputStream out = FileUtils.openOutputStream(currentFile)) {
-                            IOUtils.copy(is, out);
+                        if (!targetFile.exists() || targetFile.length() != jarEntry.getSize()) {
+                            try (InputStream is = jarFile.getInputStream(jarEntry);
+                                    OutputStream out = FileUtils.openOutputStream(targetFile)) {
+                                IOUtils.copy(is, out);
+                            }                            
                         }
                     }
                 }
@@ -205,8 +210,10 @@ public class LoadLibs {
                 }
             }
         } else {
-            FileUtils.copyURLToFile(virtualFileOrFolder.asFileURL(),
-                    new File(targetFolder, virtualFileOrFolder.getName()));
+            File targetFile = new File(targetFolder, virtualFileOrFolder.getName());
+            if (!targetFile.exists() || targetFile.length() != virtualFileOrFolder.getSize()) {
+                FileUtils.copyURLToFile(virtualFileOrFolder.asFileURL(), targetFile);
+            }
         }
     }
 }

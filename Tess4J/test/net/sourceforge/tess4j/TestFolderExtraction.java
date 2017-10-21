@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2008 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -16,17 +16,19 @@
 
 package net.sourceforge.tess4j;
 
-import net.sourceforge.tess4j.util.LoadLibs;
-import net.sourceforge.tess4j.util.LoggHelper;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static org.junit.Assert.assertTrue;
+
+import net.sourceforge.tess4j.util.LoadLibs;
+
+import net.sourceforge.tess4j.util.LoggHelper;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestFolderExtraction {
 
@@ -36,7 +38,7 @@ public class TestFolderExtraction {
     public void testFolderExtraction() {
 
         File tessDataFolder = null;
-
+        
         try {
 
             /**
@@ -51,12 +53,12 @@ public class TestFolderExtraction {
              */
             logger.info("Loading the tessdata folder into a temporary folder.");
             tessDataFolder = LoadLibs.extractTessResources("tessdata");
-
+            
             /**
              * Gets tesseract instance and sets data path.
              */
             ITesseract instance = new Tesseract();
-
+            
             if (tessDataFolder != null) {
                 logger.info(tessDataFolder.getAbsolutePath());
                 instance.setDatapath(tessDataFolder.getAbsolutePath());
@@ -74,7 +76,7 @@ public class TestFolderExtraction {
         } catch (URISyntaxException e) {
             logger.error(e.getMessage(), e);
         }
-
+        
         // checks if tessdata folder exists
         assertTrue(tessDataFolder != null && tessDataFolder.exists());
     }

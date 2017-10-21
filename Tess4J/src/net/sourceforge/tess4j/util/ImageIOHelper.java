@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2008 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,27 +15,17 @@
  */
 package net.sourceforge.tess4j.util;
 
-import com.github.jaiimageio.plugins.tiff.*;
-import org.w3c.dom.NodeList;
-
+import java.io.*;
+import java.util.*;
 import javax.imageio.*;
-import javax.imageio.metadata.IIOInvalidTreeException;
-import javax.imageio.metadata.IIOMetadata;
-import javax.imageio.metadata.IIOMetadataNode;
-import javax.imageio.stream.ImageInputStream;
-import javax.imageio.stream.ImageOutputStream;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferByte;
-import java.awt.image.RenderedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
+import javax.imageio.stream.*;
+import javax.imageio.metadata.*;
+import com.github.jaiimageio.plugins.tiff.*;
+import java.awt.Toolkit;
+import java.awt.image.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.*;
-import java.util.List;
+import org.w3c.dom.NodeList;
 
 public class ImageIOHelper {
 
@@ -51,8 +41,8 @@ public class ImageIOHelper {
      * image to multiple TIFF image files.
      *
      * @param imageFile input image file
-     * @param index     an index of the page; -1 means all pages, as in a multi-page
-     *                  TIFF image
+     * @param index an index of the page; -1 means all pages, as in a multi-page
+     * TIFF image
      * @return a list of TIFF image files
      * @throws IOException
      */
@@ -66,9 +56,9 @@ public class ImageIOHelper {
      * image to multiple TIFF image files.
      *
      * @param imageFile input image file
-     * @param index     an index of the page; -1 means all pages, as in a multi-page
-     *                  TIFF image
-     * @param preserve  preserve compression mode
+     * @param index an index of the page; -1 means all pages, as in a multi-page
+     * TIFF image
+     * @param preserve preserve compression mode
      * @return a list of TIFF image files
      * @throws IOException
      */
@@ -137,7 +127,7 @@ public class ImageIOHelper {
      * objects.
      *
      * @param imageList a list of <code>IIOImage</code> objects
-     * @param index     an index of the page; -1 means all pages
+     * @param index an index of the page; -1 means all pages
      * @return a list of TIFF image files
      * @throws IOException
      */
@@ -190,8 +180,8 @@ public class ImageIOHelper {
      * Set DPI using API.
      *
      * @param imageMetadata original IIOMetadata
-     * @param dpiX          horizontal resolution
-     * @param dpiY          vertical resolution
+     * @param dpiX horizontal resolution
+     * @param dpiY vertical resolution
      * @return modified IIOMetadata
      * @throws IIOInvalidTreeException
      */
@@ -307,7 +297,7 @@ public class ImageIOHelper {
      * Gets a list of <code>BufferedImage</code> objects for an image file.
      *
      * @param imageFile input image file. It can be any of the supported
-     *                  formats, including TIFF, JPEG, GIF, PNG, BMP, JPEG
+     * formats, including TIFF, JPEG, GIF, PNG, BMP, JPEG
      * @return a list of <code>BufferedImage</code> objects
      * @throws IOException
      */
@@ -356,8 +346,8 @@ public class ImageIOHelper {
      * Gets a list of <code>IIOImage</code> objects for an image file.
      *
      * @param imageFile input image file. It can be any of the supported
-     *                  formats, including TIFF, JPEG, GIF, PNG, BMP, JPEG, and PDF if GPL
-     *                  Ghostscript is installed
+     * formats, including TIFF, JPEG, GIF, PNG, BMP, JPEG, and PDF if GPL
+     * Ghostscript is installed
      * @return a list of <code>IIOImage</code> objects
      * @throws IOException
      */
@@ -438,7 +428,7 @@ public class ImageIOHelper {
      * Merges multiple images into one multi-page TIFF image.
      *
      * @param inputImages an array of image files
-     * @param outputTiff  the output multi-page TIFF file
+     * @param outputTiff the output multi-page TIFF file
      * @throws IOException
      */
     public static void mergeTiff(File[] inputImages, File outputTiff) throws IOException {
@@ -488,7 +478,7 @@ public class ImageIOHelper {
      * Merges multiple images into one multi-page TIFF image.
      *
      * @param inputImages an array of <code>BufferedImage</code>
-     * @param outputTiff  the output TIFF file
+     * @param outputTiff the output TIFF file
      * @throws IOException
      */
     public static void mergeTiff(BufferedImage[] inputImages, File outputTiff) throws IOException {
@@ -498,8 +488,8 @@ public class ImageIOHelper {
     /**
      * Merges multiple images into one multi-page TIFF image.
      *
-     * @param inputImages     an array of <code>BufferedImage</code>
-     * @param outputTiff      the output TIFF file
+     * @param inputImages an array of <code>BufferedImage</code>
+     * @param outputTiff the output TIFF file
      * @param compressionType valid values: LZW, CCITT T.6, PackBits
      * @throws IOException
      */
@@ -516,7 +506,7 @@ public class ImageIOHelper {
     /**
      * Merges multiple images into one multi-page TIFF image.
      *
-     * @param imageList  a list of <code>IIOImage</code> objects
+     * @param imageList a list of <code>IIOImage</code> objects
      * @param outputTiff the output TIFF file
      * @throws IOException
      */
@@ -527,8 +517,8 @@ public class ImageIOHelper {
     /**
      * Merges multiple images into one multi-page TIFF image.
      *
-     * @param imageList       a list of <code>IIOImage</code> objects
-     * @param outputTiff      the output TIFF file
+     * @param imageList a list of <code>IIOImage</code> objects
+     * @param outputTiff the output TIFF file
      * @param compressionType valid values: LZW, CCITT T.6, PackBits
      * @throws IOException
      */
@@ -598,7 +588,7 @@ public class ImageIOHelper {
             int dpiX;
             if (nodes.getLength() > 0) {
                 float dpcWidth = Float.parseFloat(nodes.item(0).getAttributes().item(0).getNodeValue());
-                dpiX = Math.round(25.4f / dpcWidth);
+                dpiX = (int) Math.round(25.4f / dpcWidth);
             } else {
                 dpiX = Toolkit.getDefaultToolkit().getScreenResolution();
             }
@@ -608,7 +598,7 @@ public class ImageIOHelper {
             int dpiY;
             if (nodes.getLength() > 0) {
                 float dpcHeight = Float.parseFloat(nodes.item(0).getAttributes().item(0).getNodeValue());
-                dpiY = Math.round(25.4f / dpcHeight);
+                dpiY = (int) Math.round(25.4f / dpcHeight);
             } else {
                 dpiY = Toolkit.getDefaultToolkit().getScreenResolution();
             }

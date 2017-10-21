@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2009 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -14,10 +14,6 @@
  * the License.
  */
 package net.sourceforge.tess4j.util;
-
-import org.ghost4j.Ghostscript;
-import org.ghost4j.GhostscriptException;
-import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -28,22 +24,15 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import org.ghost4j.Ghostscript;
+import org.ghost4j.GhostscriptException;
+import org.slf4j.LoggerFactory;
+
 public class PdfUtilities {
 
     public static final String GS_INSTALL = "\nPlease download, install GPL Ghostscript from http://www.ghostscript.com\nand/or set the appropriate environment variable.";
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(new LoggHelper().toString());
-    private static final String PS_FILE = "lib/pdfpagecount.ps";
-    private static final String pdfPageCountFilePath;
-
-    static {
-        File postscriptFile = LoadLibs.extractTessResources(PS_FILE);
-        if (postscriptFile != null && postscriptFile.exists()) {
-            pdfPageCountFilePath = postscriptFile.getPath();
-        } else {
-            pdfPageCountFilePath = PS_FILE;
-        }
-    }
 
     /**
      * Converts PDF to TIFF format.
@@ -147,11 +136,12 @@ public class PdfUtilities {
     /**
      * Splits PDF.
      *
-     * @param inputPdfFile  input file
-     * @param outputPdfFile output file
-     * @param firstPage     begin page
-     * @param lastPage      end page
      * @deprecated As of Release 3.0.
+     *
+     * @param inputPdfFile input file
+     * @param outputPdfFile output file
+     * @param firstPage begin page
+     * @param lastPage end page
      */
     public static void splitPdf(String inputPdfFile, String outputPdfFile, String firstPage, String lastPage) {
         if (firstPage.trim().isEmpty()) {
@@ -167,10 +157,10 @@ public class PdfUtilities {
     /**
      * Splits PDF.
      *
-     * @param inputPdfFile  input file
+     * @param inputPdfFile input file
      * @param outputPdfFile output file
-     * @param firstPage     begin page
-     * @param lastPage      end page
+     * @param firstPage begin page
+     * @param lastPage end page
      */
     public static void splitPdf(File inputPdfFile, File outputPdfFile, int firstPage, int lastPage) {
         //get Ghostscript instance
@@ -217,12 +207,25 @@ public class PdfUtilities {
         }
     }
 
+    private static final String PS_FILE = "lib/pdfpagecount.ps";
+    private static final String pdfPageCountFilePath;
+
+    static {
+        File postscriptFile = LoadLibs.extractTessResources(PS_FILE);
+        if (postscriptFile != null && postscriptFile.exists()) {
+            pdfPageCountFilePath = postscriptFile.getPath();
+        } else {
+            pdfPageCountFilePath = PS_FILE;
+        }
+    }
+
     /**
      * Gets PDF Page Count.
      *
+     * @deprecated As of Release 3.0.
+     *
      * @param inputPdfFile input file
      * @return number of pages
-     * @deprecated As of Release 3.0.
      */
     public static int getPdfPageCount(String inputPdfFile) {
         return getPdfPageCount(new File(inputPdfFile));

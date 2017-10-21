@@ -7,7 +7,6 @@ package com.recognition.software.jdeskew;
 //import java.awt.Graphics2D;
 //import java.awt.RenderingHints;
 //import java.awt.geom.AffineTransform;
-
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 //import java.io.File;
@@ -24,7 +23,11 @@ public class ImageUtil {
         if (image.getType() == BufferedImage.TYPE_BYTE_BINARY) {
             WritableRaster raster = image.getRaster();
             int pixelRGBValue = raster.getSample(x, y, 0);
-            return pixelRGBValue == 0;
+            if (pixelRGBValue == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         int luminanceValue = 140;

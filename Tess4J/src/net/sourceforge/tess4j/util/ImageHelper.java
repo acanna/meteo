@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2008 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -18,30 +18,26 @@ package net.sourceforge.tess4j.util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.IIOImage;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.Toolkit;
+import java.awt.Transparency;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.image.*;
+import javax.imageio.IIOImage;
 
 public class ImageHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(new LoggHelper().toString());
-    private static final short[] invertTable;
-
-    static {
-        invertTable = new short[256];
-        for (int i = 0; i < 256; i++) {
-            invertTable[i] = (short) (255 - i);
-        }
-    }
 
     /**
      * Convenience method that returns a scaled instance of the provided
      * {@code BufferedImage}.
      *
-     * @param image        the original image to be scaled
-     * @param targetWidth  the desired width of the scaled instance, in pixels
+     * @param image the original image to be scaled
+     * @param targetWidth the desired width of the scaled instance, in pixels
      * @param targetHeight the desired height of the scaled instance, in pixels
      * @return a scaled version of the original {@code BufferedImage}
      */
@@ -61,7 +57,7 @@ public class ImageHelper {
      * {@code IIOImage}.
      *
      * @param iioSource the original image to be scaled
-     * @param scale     the desired scale
+     * @param scale the desired scale
      * @return a scaled version of the original {@code IIOImage}
      */
     public static IIOImage getScaledInstance(IIOImage iioSource, float scale) {
@@ -83,11 +79,11 @@ public class ImageHelper {
      * method.
      *
      * @param image
-     * @param x      the X coordinate of the upper-left corner of the specified
-     *               rectangular region
-     * @param y      the Y coordinate of the upper-left corner of the specified
-     *               rectangular region
-     * @param width  the width of the specified rectangular region
+     * @param x the X coordinate of the upper-left corner of the specified
+     * rectangular region
+     * @param y the Y coordinate of the upper-left corner of the specified
+     * rectangular region
+     * @param width the width of the specified rectangular region
      * @param height the height of the specified rectangular region
      * @return a BufferedImage that is the subimage of <code>image</code>.
      */
@@ -140,6 +136,15 @@ public class ImageHelper {
         g2.drawImage(image, 0, 0, null);
         g2.dispose();
         return tmp;
+    }
+
+    private static final short[] invertTable;
+
+    static {
+        invertTable = new short[256];
+        for (int i = 0; i < 256; i++) {
+            invertTable[i] = (short) (255 - i);
+        }
     }
 
     /**

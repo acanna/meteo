@@ -1,12 +1,12 @@
 /**
  * Copyright @ 2010 Quan Nguyen
- * <p>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -15,36 +15,46 @@
  */
 package net.sourceforge.tess4j;
 
-import com.recognition.software.jdeskew.ImageDeskew;
-import net.sourceforge.tess4j.ITessAPI.TessPageIteratorLevel;
-import net.sourceforge.tess4j.ITesseract.RenderedFormat;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+
 import net.sourceforge.tess4j.util.ImageHelper;
 import net.sourceforge.tess4j.util.ImageIOHelper;
 import net.sourceforge.tess4j.util.LoggHelper;
 import net.sourceforge.tess4j.util.Utils;
-import org.junit.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.imageio.IIOImage;
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import net.sourceforge.tess4j.ITesseract.RenderedFormat;
+import net.sourceforge.tess4j.ITessAPI.TessPageIteratorLevel;
 
 import static org.junit.Assert.*;
 
+import com.recognition.software.jdeskew.ImageDeskew;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TesseractTest {
 
-    static final double MINIMUM_DESKEW_THRESHOLD = 0.05d;
     private static final Logger logger = LoggerFactory.getLogger(new LoggHelper().toString());
+    static final double MINIMUM_DESKEW_THRESHOLD = 0.05d;
+    ITesseract instance;
+
     private final String datapath = ".";
     private final String testResourcesDataPath = "test/resources/test-data";
     private final String expOCRResult = "The (quick) [brown] {fox} jumps!\nOver the $43,456.78 <lazy> #90 dog";
-    ITesseract instance;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -236,7 +246,7 @@ public class TesseractTest {
 
     /**
      * Test of getSegmentedRegions method, of class Tesseract.
-     *
+     * 
      * @throws java.lang.Exception
      */
     @Test

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Tess4J">
+    <CLASSES />
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/Tess4J/lib/win32-x86-64" />
+      <root url="file://$PROJECT_DIR$/Tess4J/lib/win32-x86-64" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>

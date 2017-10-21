@@ -10,16 +10,16 @@
 <project name="Tess4J" default="default" basedir=".">
     <description>Builds, tests, and runs the project Tess4J.</description>
     <import file="nbproject/build-impl.xml"/>
-    <property name="version" value="3.4.0"/>
+    <property name="version" value="3.4.1"/>
 
     <target name="-pre-compile">
         <copy todir="${build.classes.dir}">
-            <fileset dir="lib" includes="win32-x86/**,win32-x86-64/**"/>
+            <fileset dir="lib" includes="win32-x86/**,win32-x86-64/**" />
         </copy>
     </target>
     <target name="-post-jar">
         <move todir="./">
-            <fileset dir="${dist.dir}" includes="${ant.project.name}.jar"/>
+            <fileset dir="${dist.dir}" includes="${ant.project.name}.jar" />
         </move>
         <delete dir="${dist.dir}/lib"/>
     </target>

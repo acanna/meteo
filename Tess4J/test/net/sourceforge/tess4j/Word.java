@@ -1,6 +1,6 @@
 package net.sourceforge.tess4j;
 
-import java.awt.*;
+import java.awt.Rectangle;
 
 /**
  * Encapsulates Tesseract results.
