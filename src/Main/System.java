@@ -11,10 +11,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
 
 class System {
-
     private ImageData image = new ImageData();
     private DataFilter dataFilter = new DataFilter();
     //  Инициализируем создание списка файлов изображений
@@ -31,9 +29,10 @@ class System {
         int ok=0, error =0;
         while (index++ < size) {
             try {
+                java.lang.System.out.print("_________________________\nProcessing: ");
                 //  Открываем изображение, считывает пиксили
                 image.openImage(in.next());
-                java.lang.System.out.println("_________________________\nProcessing: \"" + in.getName() + "\"");
+                java.lang.System.out.println(" \"" + in.getName() + "\"");
                 double proccTimeBegin = java.lang.System.nanoTime() / 1000000000.0;
                 //  Обработка и вывод в файл
                 // getPath - путь к файлу с данными
@@ -45,10 +44,9 @@ class System {
                 ++ok;
                 java.lang.System.out.println("COMPLETE");
             } catch (BrokenImage e) {
-                java.lang.System.err.println(e.getMessage());
                 logStr.append(in.getName() + " - Error " + "  Причина: " + e.getMessage() + "\n");
                 ++error;
-                java.lang.System.err.println("ABORT");
+                java.lang.System.out.println(e.getMessage() + "\nABORT");
             }
         }
         java.lang.System.out.println("_______________________\n      [Done]");
@@ -66,3 +64,4 @@ class System {
         }
     }
 }
+

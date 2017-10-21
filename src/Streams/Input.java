@@ -1,6 +1,8 @@
 package Streams;
 
 
+import Filters.BrokenImage;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -45,7 +47,7 @@ public class Input {
 
     //  Возвращает след картинку для обработки
 
-    public String next(){
+    public String next() throws BrokenImage {
         fileName = fileList.getFirst().getAbsolutePath().split("GraphImages")[1];
         dirName = fileList.getFirst().getAbsolutePath().split("GraphImages")[1].split("\\\\")[1];
         fileOutPath = fileList.getFirst().getAbsolutePath()
@@ -54,6 +56,11 @@ public class Input {
         String[] dirs = fileOutPath.split("\\\\" );
         for(int i =1 ; i < dirs.length ; ++i){
             new File(fileOutPath.split( dirs[i] )[0]).mkdir();
+        }
+        if(! fileList.getFirst().getName().split("\\.")[1].equals("jpg")) {
+            System.out.println("\"" + fileName + "\"");
+            fileList.pollFirst();
+            throw new BrokenImage("Неправильный формат файла, используйте jpg");
         }
         //--- TODO: Вставь сюда замену пути fileName и fileOutPath и dirName
         //----------
