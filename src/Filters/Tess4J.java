@@ -98,7 +98,7 @@ class Tess4J {
 
                             if (count > (int) (pixelList.size() * accuracy)) {
                                 range = subRange;
-                                System.out.println("Единица оси Y - " + range );
+                                System.out.println("Единица оси Y - " + range + "count - " + count );
                                 break;
                             }
                             ranges.put(subRange, count + 1);
@@ -132,7 +132,7 @@ class Tess4J {
             }
         }
         // Вывод (для проверки)
-        System.out.println("Начальное значение - " + nums.get(0));
+        System.out.println("Начальное значение - " + dataList.get(0));
     }
 
     // Возврат пикселя первого штриха

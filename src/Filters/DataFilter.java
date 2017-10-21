@@ -131,7 +131,7 @@ public class DataFilter {
                     pixelTimeList.add(mas[xLine][i]);
             }
             if(pixelTimeList.size() < 72)
-                throw new BrokenImage("Не найдены все значения оси X");
+               throw new BrokenImage("Не найдены все значения оси X, найдено " + pixelTimeList.size() + " из 72");
             //  Симулирует время оси Х, по сути нумирация строк для проверки данных
             int hour = 0;
             int dataCount = 0;

@@ -1,0 +1,29 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GraphDetector:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GraphDetector_jar</output-path>
+    <root id="archive" name="GraphDetector.jar">
+      <element id="module-output" name="GraphDetector" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/log4j-1.2.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/dist/tess4j-3.4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/jai-imageio-core-1.3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/xmlgraphics-commons-1.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/ghost4j-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/logback-core-1.2.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/slf4j-api-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/lept4j-1.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/junit-4.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/jboss-vfs-3.2.12.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/commons-beanutils-1.9.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/itext-2.1.7.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Tess4J" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/jcl-over-slf4j-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/hamcrest-core-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/commons-io-2.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/jul-to-slf4j-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/log4j-over-slf4j-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/jna-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/Tess4J/lib/logback-classic-1.2.3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
