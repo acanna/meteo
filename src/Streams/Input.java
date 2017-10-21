@@ -57,7 +57,9 @@ public class Input {
         for(int i =1 ; i < dirs.length ; ++i){
             new File(fileOutPath.split( dirs[i] )[0]).mkdir();
         }
-        if(! fileList.getFirst().getName().split("\\.")[1].equals("jpg")) {
+        // Исключение если имя файла не заканчивается на .jpg
+        String str[] = fileList.getFirst().getName().split("\\.");
+        if(! str[str.length - 1].equals("jpg")) {
             System.out.println("\"" + fileName + "\"");
             fileList.pollFirst();
             throw new BrokenImage("Неправильный формат файла, используйте jpg");
