@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+name = input("Что скачиваем: Ветер-1; давление-2?  ")
+if name == 1:
+	name = "WndDir"
+else:
+	name = "PresSt"
+date = input("Дата 2 суток в формате гггг-мм-дд,гггг-мм-дд  ")
+
+import urllib.request
+url = "http://cliware.meteo.ru/webchart/timeser/27612/SYNOPRUS/" + name + "/4800/2880?colors=255,255,255;255,255,255;255,255,255;255,255,255;255,255,255;0,0,0;255,255,255&dates="+date
+img = urllib.request.urlopen(url).read()
+out = open(date +".jpg", "wb")
+out.write(img)
+out.close
+print(url)
