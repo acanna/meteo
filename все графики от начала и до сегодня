@@ -9,18 +9,18 @@ if name == 1:
 else:
 	name = "PresSt"
 
-ny_2016 = datetime.date(2016,10,1) # создали дату: 1 cентября 2016 года
-delta = datetime.timedelta(days=1) # дельта в 1 дня
+ny_2016 = datetime.date(2016,10,1) # создали дату: 1 октября 2016 года
+delta = datetime.timedelta(days=2) # дельта в 2 дня
 now_date = ny_2016
 part1 = "http://cliware.meteo.ru/webchart/timeser/27612/SYNOPRUS/"
 part2 = "/4800/2880?colors=255,255,255;255,255,255;255,255,255;255,255,255;255,255,255;0,0,0;255,255,255&dates="
-while now_date < datetime.date.today():
+while now_date < datetime.date.today(): #Скачивание от начала до сегодня
 	date1 = now_date
-	now_date = now_date + delta # Узнаем какое число будет через 1 день
+	now_date = now_date + delta # Узнаем какое число будет через 2 дня
 	date2 = now_date
-	url =  part1 + name + part2 + date1.strftime("%Y-%m-%d") + "," + date2.strftime("%Y-%m-%d")
-	img = urllib.request.urlopen(url).read()
-	out = open(date1.strftime("%Y-%m-%d") + "," + date2.strftime("%Y-%m-%d") +".jpg", "wb")
+	url =  part1 + name + part2 + date1.strftime("%Y-%m-%d") + "," + date2.strftime("%Y-%m-%d") #создание ссылки
+	img = urllib.request.urlopen(url).read() #скачивание
+	out = open(date1.strftime("%Y-%m-%d") + "," + date2.strftime("%Y-%m-%d") +".jpg", "wb") #сохранение
 	out.write(img)
 	out.close	
 	

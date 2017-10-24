@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+
+
+import urllib.request
+import datetime
+import os, sys
+
+nameGr =""
+datest = datetime.datetime.today()
+datefi = datetime.datetime.today()
+now_date = datetime.datetime.today()
+codest =""
+
+def name(): #выбор типа графика
+	global nameGr
+	name1 = input("Что скачиваем? Направление ветра - 1; давление - 2; ")	
+	if name1 == "1":
+		nameGr = "WndDir"	
+		data()	
+	elif name1 == "2":
+		nameGr = "PresSt"	
+		data()	
+	else:
+		print("Error")
+		name()
+
+def data(): #ввод начальной и конечной даты и проверка их на адекватность
+	global datest
+	global datefi
+	try:	
+		print("Ввод начальной даты (минимум - 2016,10,1)")
+		datest = datetime.date(int(input("введите год в формате ГГГГ: ")),int(input("введите месяц в формате ММ: ")),int(input("введите день в формате ДД: ")))
+		print("Ввод конечной даты (максимум - " + datetime.date.today().strftime("%Y,%m,%d") + ")")
+		datefi = datetime.date(int(input("введите год в формате ГГГГ: ")),int(input("введите месяц в формате ММ: ")),int(input("введите день в формате ДД: ")))		
+	except Exception:
+		print("Error, неверные символы, попробуйте снова")
+		data()	
+	if  datest > datetime.date.today() or datest > datefi or datest < datetime.date(2016,10,1) :
+		print("Error, логическая ошибка ввода даты, попробуйте снова")
+		data()
+	else:
+		code()
+
+def code(): #ввод номера станции
+	global codest
+	try:
+		codest = input("введите номер станции (27612 - ВДНХ): ")
+	except Exception:
+		print("Error, неверные символы, попробуйте снова")		
+		code()
+	download()
+	
+	
+def download():	
+	global now_date
+	delta = datetime.timedelta(days=1) # дельта в 1 день
+	part1 = "http://cliware.meteo.ru/webchart/timeser/"
+	part2 = "/SYNOPRUS/"
+	part3 = "/1740/2880?colors=255,255,255;255,255,255;255,255,255;255,255,255;255,255,255;0,0,0;255,255,255&dates="
+	now_date = datest
+	print("downloading...")
+	while now_date < datefi: #Скачивание от начала до сегодня				
+		url =  part1 + codest + part2 + nameGr + part3 + now_date.strftime("%Y-%m-%d") + "," + now_date.strftime("%Y-%m-%d") #создание ссылки
+		print(url)
+		for i in range(0,10):
+			while True:
+				try:
+					img = urllib.request.urlopen(url).read() #скачивание
+				except Exception:
+					continue
+				break
+		path =  os.getcwd() + "/" + now_date.strftime("%Y") + "/" + now_date.strftime("%m")
+		try:
+    			os.makedirs(path)
+		except OSError:
+   			pass		
+		out = open(path + "/" + now_date.strftime("%Y-%m-%d") + ".jpg", "wb")		
+		out.write(img)  #сохранение
+		out.close	
+		now_date = now_date + delta # Узнаем какое число будет через 1 дня
+	
+name()
+
+
