@@ -62,7 +62,7 @@ public class DataFilter {
             int L = 500;
             Pixel[][] mas = map.getPixels();
             for (int j = 0; j < map.getWidth(); ++j)
-                for (int i = 0; i < map.getHeight(); ++i)
+                for (int i = 0; i < map.getHeight() - L; ++i)
                     //  Поиск чёрного пикселя
                     if (!mas[i][j].equals(bg, 100) && mas[i][j].equals(bl, 100)) {
                         boolean ok = true;
@@ -85,7 +85,7 @@ public class DataFilter {
         private void findY() {
             int L = 500;
             for (int i = map.getHeight() - 1; i >= 0; --i)
-                for (int j = 0; j < map.getWidth(); ++j)
+                for (int j = 0; j < map.getWidth() - L; ++j)
                     if (!mas[i][j].equals(bg, 100) && mas[i][j].equals(bl, 100)) {
                         boolean ok = true;
 
@@ -130,8 +130,6 @@ public class DataFilter {
                     //  Если проверка пройдена, то добавляем в лист
                     pixelTimeList.add(mas[xLine][i]);
             }
-            if(pixelTimeList.size() < 72)
-               throw new BrokenImage("Не найдены все значения оси X, найдено " + pixelTimeList.size() + " из 72");
             //  Симулирует время оси Х, по сути нумирация строк для проверки данных
             int hour = 0;
             int dataCount = 0;
@@ -150,8 +148,8 @@ public class DataFilter {
                             break;
                         }
             }
-            if (dataCount < 72)
-                System.out.println("Warning: Не найдены все 72 точек(за 3 дня), возможно график обрезан или неправильный");
+            if (dataCount < 24)
+                System.out.println("Warning: Не найдены все 24 точек, возможно график обрезан или неправильный");
             System.out.println("Найдено точек: " + dataCount);
         }
     }
