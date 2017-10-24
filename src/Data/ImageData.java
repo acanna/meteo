@@ -19,8 +19,13 @@ public class ImageData {
 
         int[] RGB = new int[3];
         for (int y = 0; y < raster.getHeight(); ++y)
-            for (int x = 0; x < raster.getWidth(); ++x)
-                mas[y][x] = new Pixel(x, y, raster.getPixel(x, y, RGB));
+            for (int x = 0; x < raster.getWidth(); ++x) {
+                RGB = raster.getPixel(x, y, RGB);
+                if (mas[y][x] != null)
+                    mas[y][x].setPixel(RGB[0], RGB[1], RGB[2]);
+                else
+                    mas[y][x] = new Pixel(x, y, RGB);
+            }
         return pixelMap;
     }
 
