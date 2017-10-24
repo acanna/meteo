@@ -62,7 +62,7 @@ def download():
 	part3 = "/1580/2880?colors=255,255,255;255,255,255;255,255,255;255,255,255;255,255,255;0,0,0;255,255,255&dates="
 	now_date = datest
 	print("downloading...")
-	while now_date < datefi: #Скачивание от начала до сегодня				
+	while now_date <= datefi: #Скачивание от начала до сегодня				
 		url =  part1 + codest + part2 + nameGr + part3 + now_date.strftime("%Y-%m-%d") + "," + now_date.strftime("%Y-%m-%d") #создание ссылки		
 		now_time1 = datetime.datetime.now()
 		for i in range(0,10):
