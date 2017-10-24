@@ -13,13 +13,16 @@ codest =""
 
 def name(): #выбор типа графика
 	global nameGr
-	name1 = input("Что скачиваем? Направление ветра - 1; давление - 2; ")	
+	name1 = input("Что скачиваем? Направление ветра - 1; Давление - 2; Скорость ветра - 3;")	
 	if name1 == "1":
 		nameGr = "WndDir"	
 		data()	
 	elif name1 == "2":
 		nameGr = "PresSt"	
 		data()	
+	elif name1 == "3":
+		nameGr = "WndSp"	
+		data()
 	else:
 		print("Error")
 		name()
@@ -56,20 +59,25 @@ def download():
 	delta = datetime.timedelta(days=1) # дельта в 1 день
 	part1 = "http://cliware.meteo.ru/webchart/timeser/"
 	part2 = "/SYNOPRUS/"
-	part3 = "/1740/2880?colors=255,255,255;255,255,255;255,255,255;255,255,255;255,255,255;0,0,0;255,255,255&dates="
+	part3 = "/1580/2880?colors=255,255,255;255,255,255;255,255,255;255,255,255;255,255,255;0,0,0;255,255,255&dates="
 	now_date = datest
 	print("downloading...")
-	while now_date < datefi: #Скачивание от начала до сегодня				
-		url =  part1 + codest + part2 + nameGr + part3 + now_date.strftime("%Y-%m-%d") + "," + now_date.strftime("%Y-%m-%d") #создание ссылки
-		print(url)
+	while now_date <= datefi: #Скачивание от начала до сегодня				
+		url =  part1 + codest + part2 + nameGr + part3 + now_date.strftime("%Y-%m-%d") + "," + now_date.strftime("%Y-%m-%d") #создание ссылки		
+		now_time1 = datetime.datetime.now()
 		for i in range(0,10):
-			while True:
-				try:
-					img = urllib.request.urlopen(url).read() #скачивание
-				except Exception:
-					continue
-				break
-		path =  os.getcwd() + "/" + now_date.strftime("%Y") + "/" + now_date.strftime("%m")
+			try:
+				img = urllib.request.urlopen(url).read() #скачивание
+			except Exception:
+				print(url)
+				print("ERROR, trying again...")
+				print(i)				
+				continue
+			break		
+		now_time2 = datetime.datetime.now()
+		ny = now_time2-now_time1	
+		print ("график " + now_date.strftime("%Y-%m-%d") +" успешно скачан за " + str(ny))
+		path =  os.getcwd() + "/"+"/" + "GraphImages" + "/" + nameGr +"/" + now_date.strftime("%Y") + "/" + now_date.strftime("%m")
 		try:
     			os.makedirs(path)
 		except OSError:
